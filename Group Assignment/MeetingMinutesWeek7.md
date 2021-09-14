@@ -2,10 +2,10 @@
 
 
 ## Team Meeting 1 - Week 7 - 13/09 (19:30-21:30)
-**Attendee:Xinjie,Jiaan,Xiang,Lingchao
-**Absent:None
-**Lead:Jiaan
-**scribe:Lingchao
+**Attendee:Xinjie,Jiaan,Xiang,Lingchao**
+**Absent:None**
+**Lead:Jiaan**
+**scribe:Lingchao**
 
 ## Agreed Procedure
 Stand up Procedure:Everyone in the team attend the meeting on time.
@@ -15,8 +15,11 @@ There was a catch meeting for new member to be familiar with content of last mee
 ## Agenda Items
 | Number | Item |
 | 0 | think and discuss about how many pages needed. |
+
 | 1 | discuss about  name and function of each page. |
+
 | 2 | discuss about design of each page. |
+
 | 3 | divide groups and distribute work to each group. |
 
 ## Meeting Minutes
@@ -46,7 +49,10 @@ There was a catch meeting for new member to be familiar with content of last mee
 ## TODO Items
 | Task | Assignee |description|
 | 0 | Xinjie |design chat page and create one without logic.|
+
 | 1  | Lingchao |design post page and create one without logic.|
+
 | 2 | Jiaan && Xiang |design login and profile page and create one without logic.|
+
 
 
