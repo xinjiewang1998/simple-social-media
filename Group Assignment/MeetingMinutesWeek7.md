@@ -2,10 +2,13 @@
 
 
 ## Team Meeting 1 - Week 7 - 13/09 (19:30-21:30)
-**Attendee:Xinjie,Jiaan,Xiang,Lingchao**
-**Absent:None**
-**Lead:Jiaan**
-**scribe:Lingchao**
+**Attendee**:Xinjie,Jiaan,Xiang,Lingchao
+
+**Absent**:None
+
+**Lead**:Jiaan**
+
+**scribe**:Lingchao**
 
 ## Agreed Procedure
 Stand up Procedure:Everyone in the team attend the meeting on time.
