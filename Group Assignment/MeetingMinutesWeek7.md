@@ -17,6 +17,7 @@ There was a catch meeting for new member to be familiar with content of last mee
 
 ## Agenda Items
 | Number | Item |
+
 | 0 | think and discuss about how many pages needed. |
 
 | 1 | discuss about  name and function of each page. |
@@ -51,6 +52,7 @@ There was a catch meeting for new member to be familiar with content of last mee
 
 ## TODO Items
 | Task | Assignee |description|
+
 | 0 | Xinjie |design chat page and create one without logic.|
 
 | 1  | Lingchao |design post page and create one without logic.|
