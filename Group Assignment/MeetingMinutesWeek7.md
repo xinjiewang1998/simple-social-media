@@ -6,9 +6,9 @@
 
 **Absent**:None
 
-**Lead**:Jiaan**
+**Lead**:Jiaan
 
-**scribe**:Lingchao**
+**scribe**:Lingchao
 
 ## Agreed Procedure
 Stand up Procedure:Everyone in the team attend the meeting on time.
