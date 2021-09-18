@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="concerned">concerned</string>
+    <string name="hot">hot</string>
+    <string name="all">all</string>
+    <string name="reviewnumber">reviewnumber</string>
+    <string name="number">4000</string>
+    <string name="pushtime">pushtime</string>
+    <string name="time">18/09/2021</string>
+    <string name="good">good</string>
+    <string name="share">share</string>
+
 </resources>
