@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    //This shows user name, id and image at first line.
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Username"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:text="测试用户名测试用户名测试用户名 测试id"
+            android:paddingLeft="20dp"
+            android:textSize="18sp"
+            android:maxEms="5"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="50dp"
+            android:layout_weight="1"
+            android:layout_height="120dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/test"
+            app:riv_border_color="#333333"
+            app:riv_border_width="2dp"
+            app:riv_corner_radius="30dp"
+            app:riv_mutate_background="true"
+            app:riv_oval="false"
+            app:riv_tile_mode="repeat"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+
+    //This is for numeber of friends, fans and follows.
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="0"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:maxLines="1"
+            android:layout_marginRight="20dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="0"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:maxLines="1"
+            android:layout_marginRight="20dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="0"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:maxLines="1"
+            android:layout_marginRight="20dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    //This explain the number about friends, fans and follows.
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="测试好友数"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:maxLines="1"
+            android:layout_marginRight="20dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="测试粉丝数"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:maxLines="1"
+            android:layout_marginRight="20dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:text="测试关注数"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:maxLines="1"
+            android:layout_marginRight="20dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    //Separate row 1.
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/gray"
+            />
+    </LinearLayout>
+
+    //Personal message
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_notifications_24"
+            />
+
+        <TextView
+            android:id="@+id/Message"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="30dp"
+            android:text="测试消息"
+            android:paddingLeft="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_navigate_next_24"
+            />
+
+    </LinearLayout>
+
+    //Separate row 2.
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/gray"
+            />
+    </LinearLayout>
+
+    //Personal posts.
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_article_24"
+            />
+        <TextView
+            android:id="@+id/MyPost"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="30dp"
+            android:text="测试帖子"
+            android:paddingLeft="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            />
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_navigate_next_24"
+            />
+    </LinearLayout>
+
+    //Personal histories.
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_history_24"
+            />
+        <TextView
+            android:id="@+id/MyHistory"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="30dp"
+            android:text="测试浏览历史"
+            android:paddingLeft="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            />
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_navigate_next_24"
+            />
+
+    </LinearLayout>
+
+    //Separate row 3.
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/gray"
+            />
+    </LinearLayout>
+
+    //Settings
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_settings_24"
+            />
+        <TextView
+            android:id="@+id/Setting"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="30dp"
+            android:text="测试设置"
+            android:paddingLeft="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            />
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_navigate_next_24"
+            />
+    </LinearLayout>
+
+</LinearLayout>
