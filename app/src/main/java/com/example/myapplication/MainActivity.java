@@ -51,5 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
             Toast.makeText(MainActivity.this, "Logout succeed", Toast.LENGTH_SHORT).show();
         }
+        else if(view.getId() == R.id.Message){
+            Intent intent  = new Intent(getApplicationContext(),MessageActivity.class);
+            startActivity(intent);
+        }
     }
 }
