@@ -19,6 +19,9 @@
             android:name=".Mainpost"
             android:exported="true" />
         <activity
+            android:name=".chatBox"
+            android:exported="true" />
+        <activity
             android:name=".MessageActivity"
             android:exported="true" />
         <activity

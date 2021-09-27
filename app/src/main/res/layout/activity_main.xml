@@ -168,6 +168,9 @@
             android:textSize="18sp"
             android:textColor="@color/black"
             android:layout_gravity="center"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:focusable="true"
             />
 
         <ImageButton

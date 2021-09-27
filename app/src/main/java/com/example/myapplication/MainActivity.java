@@ -27,8 +27,33 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent=new Intent(getApplicationContext(),Mainpost.class);
-        startActivity(intent);
+        logoutButton = findViewById(R.id.logout_button);
+        usernameTextView = findViewById(R.id.username);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() == null) {
+            startActivity(new Intent(MainActivity.this, StartActivity.class));
+        } else {
+            if(mAuth.getCurrentUser()!= null) {
+                usernameTextView.setText(mAuth.getCurrentUser().getEmail());
+            }
+        }
+    }
+
+
+    public void onClick(View view) {
+        if (view.getId() == R.id.logout_button) {
+            mAuth = FirebaseAuth.getInstance();
+            mAuth.signOut();
+            startActivity(new Intent(MainActivity.this, StartActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+            Toast.makeText(MainActivity.this, "Logout succeed", Toast.LENGTH_SHORT).show();
+        }
     }
 }
