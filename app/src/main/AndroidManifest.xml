@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".eachpost"
+            android:exported="true" />
+        <activity
+            android:name=".allpost"
+            android:exported="true" />
+        <activity
+            android:name=".Mainpost"
+            android:exported="true" />
+        <activity
             android:name=".chatBox"
             android:exported="true" />
         <activity

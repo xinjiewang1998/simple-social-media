@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -11,7 +15,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity  {
 
 
     private FirebaseAuth mAuth;
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
+
     public void onClick(View view) {
         if (view.getId() == R.id.logout_button) {
             mAuth = FirebaseAuth.getInstance();
@@ -50,10 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
             finish();
             Toast.makeText(MainActivity.this, "Logout succeed", Toast.LENGTH_SHORT).show();
-        }
-        else if(view.getId() == R.id.Message){
-            Intent intent  = new Intent(getApplicationContext(),MessageActivity.class);
-            startActivity(intent);
         }
     }
 }
