@@ -8,8 +8,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+
+public class MainActivity extends AppCompatActivity  {
+
+
+    private FirebaseAuth mAuth;
+    private TextView logoutButton;
+    private TextView usernameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

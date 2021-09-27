@@ -19,7 +19,13 @@
             android:name=".Mainpost"
             android:exported="true" />
         <activity
+            android:name=".MessageActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
