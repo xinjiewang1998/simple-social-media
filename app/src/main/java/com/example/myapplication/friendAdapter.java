@@ -32,12 +32,9 @@ public class friendAdapter extends RecyclerView.Adapter<friendAdapter.friendHold
 
     @Override
     public void onBindViewHolder(@NonNull friendHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.getName().setText(dataset.get(position).name);
-        if(position ==0){
-        holder.getImageView().setImageResource(R.drawable.ic_launcher_background);}
-        else{
-            holder.getImageView().setImageResource(R.drawable.ic_launcher_background);
-        }
+        holder.getName().setText(dataset.get(position).getEmail());
+        holder.getImageView().setImageResource(R.drawable.test);
+
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -46,10 +43,9 @@ public class friendAdapter extends RecyclerView.Adapter<friendAdapter.friendHold
                 Intent intent = new Intent();
                 intent.setClass(ctx, chatBox.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-                intent.putExtra("user",dataset.get(position).name);
+                intent.putExtra("user",dataset.get(position).getEmail());
+                intent.putExtra("userId",dataset.get(position).getId());
 
-//                Bitmap image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-//                intent.putExtra("pic", ((BitmapDrawable)holder.getImageView().getDrawable()).getBitmap());
                 ctx.startActivity(intent);
 
             }
