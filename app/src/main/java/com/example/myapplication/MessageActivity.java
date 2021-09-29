@@ -26,20 +26,23 @@ public class MessageActivity extends AppCompatActivity {
     private friendAdapter friendAdapter;
     private RecyclerView recyclerView;
     private List<User> listFriends;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TextView account = (TextView) findViewById(R.id.account_name);
-        recyclerView = (RecyclerView) findViewById(R.id.list_friends);
+//        TextView account = (TextView) findViewById(R.id.account_name);
         setContentView(R.layout.activity_message);
+        recyclerView = (RecyclerView) findViewById(R.id.list_friends);
         mAuth = FirebaseAuth.getInstance();
-        String name = mAuth.getCurrentUser().getEmail();
+//        String name = mAuth.getCurrentUser().getEmail();
 
-        account.setText(name);
+//        account.setText(name);
 
         listFriends = new ArrayList<>();
-        recyclerView.setHasFixedSize(true);
         readUser();
+        recyclerView.setHasFixedSize(true);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
