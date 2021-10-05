@@ -3,11 +3,12 @@
     android:layout_width="300dp"
     android:padding="8dp"
     android:layout_height="wrap_content">
+
     <ImageView
+        android:id="@+id/profile_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:id="@+id/profile_image"
-        android:src="@drawable/test"/>
+        android:src="@drawable/test" />
 
     <TextView
         android:id="@+id/msg_show"

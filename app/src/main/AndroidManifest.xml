@@ -20,7 +20,8 @@
             android:exported="true" />
         <activity
             android:name=".chatBox"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MessageActivity"/>
         <activity
             android:name=".MessageActivity"
             android:exported="true" />
