@@ -24,7 +24,6 @@
         android:id="@+id/good"
         android:layout_width="104dp"
         android:layout_height="80dp"
-        android:drawableRight="@mipmap/ic_launcher_good"
         android:text="@string/good"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

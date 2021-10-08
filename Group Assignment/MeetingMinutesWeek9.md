@@ -1,7 +1,7 @@
 # [Team Name]
 This following is a team meeting template. You may change this template as you like.
 
-## Team Meeting [3] - Week [9] - [08/10] (19:00-)
+## Team Meeting [3] - Week [9] - [08/10] (19:00-23:00)
 **Attendee**: Xinjie,Jiaan,Xiang,Lingchao
 **Absent:**
 <br>
@@ -16,7 +16,7 @@ Everyone has perfectly finished the task assigned at the last meeting.
 | Number | Item |
 | :--- | ---: |
 | [0] | [Show and explain the tasks completed last week ] |
-| [1] | [Difficulties to be solved] |
+| [1] | [Difficulties need to be solved] |
 | [2] | [Decide what are the rest of tasks we want to do ] |
 | [3] | [What will we do next week] |
 
@@ -24,6 +24,7 @@ Everyone has perfectly finished the task assigned at the last meeting.
 - show what we have done.
 - part 1: data structure
  1) There is something wrong about the B+Tree we use to store our data.
+ 2) finish the search by tag, search by user name need to be solved.
 
 - part 2: streams
  1) we do not finish the streams part."every x seconds, a new item is read from a file"
