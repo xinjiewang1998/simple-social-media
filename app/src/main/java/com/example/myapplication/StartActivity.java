@@ -37,55 +37,62 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        Intent intent = new Intent(getApplicationContext(), allpost.class);
+        startActivity(intent);
 
-        mAuth = FirebaseAuth.getInstance();
 
-        loginButton = findViewById(R.id.login_button);
-        registerButton = findViewById(R.id.register_button);
-        usernameTextField = findViewById(R.id.user_name);
-        passwordTextField = findViewById(R.id.password);
+
+    mAuth =FirebaseAuth.getInstance();
+
+    loginButton = findViewById(R.id.login_button);
+
+    registerButton = findViewById(R.id.register_button);
+
+    usernameTextField = findViewById(R.id.user_name);
+
+    passwordTextField = findViewById(R.id.password);
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        @Override
+        public void onClick (View v){
 //                Toast.makeText(StartActivity.this, "Login button clicked", Toast.LENGTH_LONG).show();
 
-                username = usernameTextField.getText().toString();
-                password = passwordTextField.getText().toString();
+        username = usernameTextField.getText().toString();
+        password = passwordTextField.getText().toString();
 
-                if(username.isEmpty()) {
-                    usernameTextField.setError("Username is required");
-                } else if (password.isEmpty()) {
-                    passwordTextField.setError("Password is required");
-                } else {
-                    loginUser(username, password);
-                }
-            }
-        });
+        if (username.isEmpty()) {
+            usernameTextField.setError("Username is required");
+        } else if (password.isEmpty()) {
+            passwordTextField.setError("Password is required");
+        } else {
+            loginUser(username, password);
+        }
+    }
+    });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        @Override
+        public void onClick (View v){
 //                Toast.makeText(StartActivity.this, "Register button clicked", Toast.LENGTH_LONG).show();
 
-                username = usernameTextField.getText().toString();
-                password = passwordTextField.getText().toString();
+        username = usernameTextField.getText().toString();
+        password = passwordTextField.getText().toString();
 
-                if(username.isEmpty() ) {
-                    usernameTextField.setError("Username is required");
+        if (username.isEmpty()) {
+            usernameTextField.setError("Username is required");
 //                    Toast.makeText(StartActivity.this, "Username is empty", Toast.LENGTH_LONG).show();
-                } else if ( password.isEmpty()) {
-                    passwordTextField.setError("Password is required");
+        } else if (password.isEmpty()) {
+            passwordTextField.setError("Password is required");
 //                    Toast.makeText(StartActivity.this, "Password is empty", Toast.LENGTH_LONG).show();
-                } else {
-                    registerUser(username, password);
-                }
-
-            }
-        });
+        } else {
+            registerUser(username, password);
+        }
 
     }
+    });
+}
+
 
     @Override
     protected void onStart() {
@@ -138,3 +145,5 @@ public class StartActivity extends AppCompatActivity {
     }
 
 }
+
+

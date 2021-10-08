@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
@@ -30,7 +30,10 @@ public class MainActivity extends AppCompatActivity  {
         logoutButton = findViewById(R.id.logout_button);
         usernameTextView = findViewById(R.id.username);
 
+
+
     }
+
 
     @Override
     protected void onStart() {
@@ -44,6 +47,9 @@ public class MainActivity extends AppCompatActivity  {
             }
         }
     }
+
+
+
 
 
     public void onClick(View view) {
@@ -61,3 +67,6 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 }
+
+
+

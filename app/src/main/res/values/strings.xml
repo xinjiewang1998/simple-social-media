@@ -13,5 +13,6 @@
     <string name="time">18/09/2021</string>
     <string name="good">good</string>
     <string name="share">share</string>
-    <string name="P1">Post1</string>
+    <string name="P">Post</string>
+    <string name="comment">comment</string>
 </resources>
