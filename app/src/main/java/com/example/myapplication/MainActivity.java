@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             Toast.makeText(MainActivity.this, "Logout succeed", Toast.LENGTH_SHORT).show();
         }
-        if(view.getId() == R.id.Message){
+        if(view.getId() == R.id.message){
             Intent intent = new Intent(getApplicationContext(),MessageActivity.class);
             startActivity(intent);
         }

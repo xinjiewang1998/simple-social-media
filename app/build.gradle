@@ -8,9 +8,9 @@ android {
     defaultConfig {
         applicationId "com.example.myapplication"
         minSdk 21
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
+//        targetSdk 31
+//        versionCode 1
+//        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -40,6 +40,8 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
     implementation 'com.makeramen:roundedimageview:2.2.1'
     implementation platform('com.google.firebase:firebase-bom:28.4.1')
     implementation 'com.google.firebase:firebase-analytics'
