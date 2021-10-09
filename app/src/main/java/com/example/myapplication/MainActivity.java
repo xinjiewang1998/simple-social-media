@@ -59,5 +59,9 @@ public class MainActivity extends AppCompatActivity  {
             Intent intent = new Intent(getApplicationContext(),MessageActivity.class);
             startActivity(intent);
         }
+        if(view.getId() == R.id.MyPost) {
+            Intent intent = new Intent(getApplicationContext(),PostActivity.class);
+            startActivity(intent);
+        }
     }
 }
