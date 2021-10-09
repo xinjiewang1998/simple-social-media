@@ -20,8 +20,6 @@ import java.util.List;
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageHolder> {
     public final Context ctx;
     public final List<Chat> dataset;
-    public static final int MSG_TYPE_LEFT = 0;
-    public static final int MSG_TYPE_Right = 1;
     FirebaseUser fUser;
 
     public MessageAdapter(Context ctx, List<Chat> dataset){
@@ -32,7 +30,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     @NonNull
     @Override
     public MessageHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(viewType==MSG_TYPE_Right){
+        if(viewType==1){
             View view = LayoutInflater.from(ctx).inflate(R.layout.chat_item_right,parent,false);
             return new MessageHolder(view);
         }else {
@@ -78,10 +76,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     public int getItemViewType(int position) {
         fUser  =FirebaseAuth.getInstance().getCurrentUser();
         if(dataset.get(position).getSender().equals(fUser.getUid())){
-            return MSG_TYPE_Right;
+            return 1;
         }
         else{
-            return MSG_TYPE_LEFT;
+            return 0;
         }
     }
 }
