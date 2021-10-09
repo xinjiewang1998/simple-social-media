@@ -80,15 +80,20 @@ public class PostActivity extends AppCompatActivity {
             is.read(buffer);
             is.close();
             String json = new String(buffer, "UTF-8");
+
             QueryEngine queryEngine = new QueryEngine(json);
+
             System.out.println("==============================================================");
             List<String> outputs = queryEngine.queryText("#APeoplesJourney");
+
 //            outputs = queryEngine.queryText("#NoTag");
 //            outputs = queryEngine.queryText("#NoTag & @acommonname");
 //            outputs = queryEngine.queryText("#NoTag | @acommonname");
 //            outputs = queryEngine.queryText("!#NoTag");
             outputs = queryEngine.queryText("#APeoplesJourney | (#NoTag & !@acommonname)");
+
 //            outputs = queryEngine.queryText("(#NoTag & !@acommonname) | #APeoplesJourney");
+            System.out.println(outputs);
             System.out.println(outputs.size());
             System.out.println("==============================================================");
         } catch (IOException e) {
