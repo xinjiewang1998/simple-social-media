@@ -51,20 +51,16 @@ public class allpost extends AppCompatActivity {
                Integer like_c=o.getInt("like_count");
                String text=o.getString("text");
                p_list=new HashMap<>();
-               pt_list=new HashMap<>();
+               //pt_list=new HashMap<>();
                p_list.put("img_url",img_url);
                p_list.put("comment_count",comment_c);
                p_list.put("like_count",like_c);
                p_list.put("text",text);
-               String postput=text.substring(0,21);
-               if(text.indexOf('@')>=0){
-                    text.trim();
-                    postput=text.substring(text.indexOf('@'),(text.indexOf('@'))+3);
-               }
+               //String postput=text.substring(0,21);
 
-               pt_list.put("text",postput);
+               //pt_list.put("text",postput);
                allpostitems.add(p_list);
-               allposttext.add(pt_list);
+               //allposttext.add(pt_list);
             }
         }catch(JSONException e){
             e.getStackTrace();

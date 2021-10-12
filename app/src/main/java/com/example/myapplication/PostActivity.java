@@ -27,7 +27,8 @@ public class PostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post);
-
+        Intent intent = new Intent(getApplicationContext(), AllPostPage.class);
+        startActivity(intent);
         hottestitem.add("hosttestPost");
         postitems.add("Post1");
         postitems.add("Post2");
