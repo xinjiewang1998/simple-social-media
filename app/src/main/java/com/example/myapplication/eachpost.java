@@ -14,15 +14,12 @@ public class eachpost extends AppCompatActivity {
         setContentView(R.layout.activity_eachpost);
         Intent intent=getIntent();
         String IMG_URL=intent.getStringExtra("IMG_URL");
-        String COMMENT_C=intent.getStringExtra("COMMENT_C");
         String LIKE_C=intent.getStringExtra("LIKE_C");
         String TEXT=intent.getStringExtra("TEXT");
         TextView textView_img=(TextView)findViewById(R.id.img_url);
-        TextView textView_comment=(TextView)findViewById(R.id.comment_count);
         TextView textView_like=(TextView)findViewById(R.id.good_count);
         TextView textView_text=(TextView)findViewById(R.id.posttext);
         textView_img.setText(IMG_URL);
-        textView_comment.setText(COMMENT_C);
         textView_like.setText(LIKE_C);
         textView_text.setText(TEXT);
     }
