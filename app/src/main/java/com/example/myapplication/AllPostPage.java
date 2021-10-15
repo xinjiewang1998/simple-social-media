@@ -6,35 +6,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
-import android.app.appsearch.AppSearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 
 import com.example.myapplication.search.QueryEngine;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.example.myapplication.R;
+import com.google.firebase.firestore.local.QueryEngine;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -48,6 +37,7 @@ public class AllPostPage extends AppCompatActivity {
     private PostsConcreteCollection postsConcreteCollection;
     private Iterator PostIterator;
     private SearchView PostsearchView;
+    private ArrayList<HashMap<String,Object>> SearchResultList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +46,7 @@ public class AllPostPage extends AppCompatActivity {
 
         recyclerView=(RecyclerView) findViewById(R.id.AllPostView);
         AllPostItems=new ArrayList<>();
+        SearchResultList=new ArrayList<>();
         readJson();
         PostsearchView=(SearchView)findViewById(R.id.SearchPost);
         PostsearchView.setIconifiedByDefault(true);
@@ -67,14 +58,35 @@ public class AllPostPage extends AppCompatActivity {
         PostsearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                if(!TextUtils.isEmpty(query)){
+                    for(int i=0;i<AllPostItems.size();i++){
+                        QueryEngine queryEngine = new QueryEngine(AllPostItems.get(i).toString());
+                        List<String> outputs=queryEngine.queryText(query);
+                        if(outputs!=null && outputs.size()!=0){
+                            HashMap<String,Object> SingleResult=new HashMap<>();
+                            SingleResult.put("like_count",AllPostItems.get(i).get("like_count"));
+                            SingleResult.put("text",outputs.get(0));
+                            SearchResultList.add(SingleResult);
+                        }
+                    }
+                    Intent intent=new Intent(getApplicationContext(),SearchResultActivity.class);
+                    ArrayList<String> TextList=new ArrayList<>();
+                    ArrayList<Integer> LikeCountList=new ArrayList<>();
+                    for(int j=0;j<SearchResultList.size();j++){
+                        String text=SearchResultList.get(j).get("text").toString();
+                        Integer LikeCount=(Integer) SearchResultList.get(j).get("like_count");
+                        TextList.add(text);
+                        LikeCountList.add(LikeCount);
+                    }
+                    intent.putStringArrayListExtra("TEXTLIST",TextList);
+                    intent.putIntegerArrayListExtra("LIKECOUNTLIST",LikeCountList);
+                    startActivity(intent);
+                }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(!TextUtils.isEmpty(newText)){
-
-                }
                 return false;
             }
         });
@@ -145,14 +157,14 @@ public class AllPostPage extends AppCompatActivity {
                 AllPostItems.clear();
                for(DataSnapshot dss: snapshot.getChildren()){
                    HashMap<String,Object> Plist=new HashMap<>();
-                   Integer CommentCount=dss.child("comment_count").getValue(Integer.class);
-                   String ImgUrl=dss.child("img_url").getValue(String.class);
                    Integer LikeCount=dss.child("like_count").getValue(Integer.class);
                    String Text=dss.child("text").getValue(String.class);
-                   Plist.put("img_url",ImgUrl);
+                   Integer CommentCount=dss.child("comment_count").getValue(Integer.class);
+                   String ImgUrl=dss.child("img_url").getValue(String.class);
                    Plist.put("text",Text);
-                   Plist.put("comment_count",CommentCount);
                    Plist.put("like_count",LikeCount);
+                   Plist.put("img_url",ImgUrl);
+                   Plist.put("comment_count",CommentCount);
                    AllPostItems.add(Plist);
                }
                 postsConcreteCollection=new PostsConcreteCollection();

@@ -18,7 +18,7 @@ public class EachPostTest {
 
     @Test
     public void eachPost() {
-        onView(withId(R.id.good)).perform(click()).check(matches(isClickable()));
+        onView(withId(R.id.Like)).perform(click()).check(matches(isClickable()));
         onView(withId(R.id.share)).perform(click()).check(matches(isClickable()));
 
     }

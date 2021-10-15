@@ -35,7 +35,6 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
         if(PostList!=null) {
             holder.getPostTag().setText(PostList.get(getItemCount() - 1 - position).get("text").toString().substring(Math.abs(PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#')), Math.abs(PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#')) + 4));
             holder.getPosterName().setText(PostList.get(getItemCount() - 1 - position).get("text").toString().substring((PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('@')), PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('@') + 4));
-            holder.getCommentCount().setText(PostList.get(getItemCount() - 1 - position).get("comment_count").toString());
             holder.getLikeCount().setText(PostList.get(getItemCount() - 1 - position).get("like_count").toString());
             holder.getImageView().setImageResource(R.drawable.test);
 
@@ -45,9 +44,9 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
                 public void onClick(View v) {
                     Intent intent = new Intent();
                     intent.setClass(context, eachpost.class);
-                    intent.putExtra("IMG_URL", PostList.get(position).get("img_url").toString());
-                    intent.putExtra("LIKE_C", PostList.get(position).get("like_count").toString());
-                    intent.putExtra("TEXT", PostList.get(position).get("text").toString());
+                    intent.putExtra("LIKE_C", PostList.get(getItemCount() - 1 - position).get("like_count").toString());
+                    intent.putExtra("TEXT", PostList.get(getItemCount() - 1 - position).get("text").toString());
+                    intent.putExtra("POSITION",getItemCount() - 1 - position);
                     context.startActivity(intent);
                 }
             });
@@ -55,7 +54,6 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
         else if(PostList==null){
             holder.getPostTag().setText("");
             holder.getPosterName().setText("");
-            holder.getCommentCount().setText("");
             holder.getLikeCount().setText("");
             holder.getImageView().setImageResource(0);
         }
@@ -66,7 +64,7 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
         return PostList==null?0:PostList.size();
     }
     public class PostHolder extends RecyclerView.ViewHolder{
-          private TextView  postTag,posterName,likeCount,commentCount;
+          private TextView  postTag,posterName,likeCount;
           private ImageView imageView;
 
           public TextView getPostTag(){
@@ -78,9 +76,6 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
         public TextView getLikeCount(){
             return likeCount;
         }
-        public TextView getCommentCount(){
-            return commentCount;
-        }
         public ImageView getImageView(){
             return imageView;
         }
@@ -91,7 +86,6 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
               postTag=itemView.findViewById(R.id.PostTag);
               posterName=itemView.findViewById(R.id.PosterName);
               likeCount=itemView.findViewById(R.id.LikeCount);
-              commentCount=itemView.findViewById(R.id.CommentCount);
               imageView=itemView.findViewById(R.id.PostPhoto);
           }
     }
