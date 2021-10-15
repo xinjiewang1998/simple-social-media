@@ -9,17 +9,21 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
 
 
 import com.example.myapplication.search.QueryEngine;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.local.QueryEngine;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,6 +59,8 @@ public class AllPostPage extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Button button=(Button)findViewById(R.id.FavoritePost);
+        button.setOnClickListener(AllPostListener);
         PostsearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -91,7 +97,13 @@ public class AllPostPage extends AppCompatActivity {
             }
         });
     }
-
+    private View.OnClickListener AllPostListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent=new Intent(getApplicationContext(),FavoritePostActivity.class);
+            startActivity(intent);
+        }
+    };
     public class PostsConcreteCollection implements IterableCollection{
         private ArrayList<HashMap<String,Object>> AllPostCollection=AllPostItems;
         @Override

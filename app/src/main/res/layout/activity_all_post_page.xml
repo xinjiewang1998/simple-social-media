@@ -24,17 +24,29 @@
 
     <SearchView
         android:id="@+id/SearchPost"
-        android:layout_width="388dp"
-        android:layout_height="27dp"
+        android:layout_width="389dp"
+        android:layout_height="26dp"
         android:layout_marginBottom="20dp"
         android:iconifiedByDefault="true"
         app:layout_constraintBottom_toTopOf="@+id/AllPostView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.407" />
+        app:layout_constraintVertical_bias="0.153" />
 
+    <Button
+        android:id="@+id/FavoritePost"
+        android:layout_width="162dp"
+        android:layout_height="52dp"
+        android:text="@string/FavoritePost"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/AllPostView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SearchPost"
+        app:layout_constraintVertical_bias="0.173" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

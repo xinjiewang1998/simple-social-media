@@ -16,4 +16,6 @@
     <string name="P">Post</string>
     <string name="comment">comment</string>
     <string name="search">search</string>
+    <string name="FavoritePost">FavoritePosts</string>
+    <string name="AllPost">AllPost</string>
 </resources>
