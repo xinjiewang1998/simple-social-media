@@ -41,7 +41,6 @@ public class AllPostPage extends AppCompatActivity {
     private PostAdapter postAdapter;
     private PostsConcreteCollection postsConcreteCollection;
     private Iterator PostIterator;
-    private SearchView PostsearchView;
     private ArrayList<HashMap<String,Object>> SearchResultList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +53,16 @@ public class AllPostPage extends AppCompatActivity {
         BufferPostList=new ArrayList<>();
         SearchResultList=new ArrayList<>();
         readJson();
-        PostsearchView=(SearchView)findViewById(R.id.SearchPost);
-        PostsearchView.setIconifiedByDefault(true);
-        PostsearchView.setSubmitButtonEnabled(true);
-        PostsearchView.onActionViewExpanded();
+        SearchView PostSearchView = (SearchView) findViewById(R.id.SearchPost);
+        PostSearchView.setIconifiedByDefault(true);
+        PostSearchView.setSubmitButtonEnabled(true);
+        PostSearchView.onActionViewExpanded();
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button=(Button)findViewById(R.id.FavoritePost);
         button.setOnClickListener(AllPostListener);
-        PostsearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        PostSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if(!TextUtils.isEmpty(query)){
