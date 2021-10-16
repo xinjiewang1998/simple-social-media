@@ -11,14 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-
+        <activity
+            android:name=".FavoritePostActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SearchResultActivity"
+            android:exported="true" />
         <activity
             android:name=".eachpost"
             android:exported="true" />
         <activity
             android:name=".allpost"
             android:exported="true" />
-
         <activity
             android:name=".chatBox"
             android:exported="true"
@@ -31,13 +35,14 @@
             android:exported="true" />
         <activity
             android:name=".PostActivity"
-            android:exported="true"/>
-            <activity
-                android:name=".StartActivity"
-                android:exported="true" />
+            android:exported="true" />
         <activity
             android:name=".AllPostPage"
+            android:exported="true"/>
+        <activity
+            android:name=".StartActivity"
             android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

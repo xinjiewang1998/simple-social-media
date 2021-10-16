@@ -11,8 +11,11 @@
     <string name="number">4000</string>
     <string name="pushtime">pushtime</string>
     <string name="time">18/09/2021</string>
-    <string name="good">good</string>
+    <string name="good">like</string>
     <string name="share">share</string>
     <string name="P">Post</string>
     <string name="comment">comment</string>
+    <string name="search">search</string>
+    <string name="FavoritePost">FavoritePosts</string>
+    <string name="AllPost">AllPost</string>
 </resources>

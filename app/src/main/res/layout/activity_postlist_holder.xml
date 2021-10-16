@@ -20,16 +20,6 @@
         app:srcCompat="@drawable/ic_launcher_background"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/nv_image"
-        android:layout_width="80dp"
-        android:layout_height="71dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PostTag"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/PosterName"
         android:layout_width="137dp"
@@ -58,19 +48,21 @@
         android:layout_height="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintHorizontal_bias="0.373"
         app:layout_constraintStart_toEndOf="@+id/PostPhoto"
         app:layout_constraintTop_toBottomOf="@+id/PosterName"
         app:layout_constraintVertical_bias="0.428" />
 
     <TextView
-        android:id="@+id/CommentCount"
-        android:layout_width="50dp"
-        android:layout_height="19dp"
-        app:layout_constraintBottom_toBottomOf="@+id/LikeCount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toEndOf="@+id/LikeCount"
-        app:layout_constraintTop_toBottomOf="@+id/PosterName"
-        app:layout_constraintVertical_bias="1.0" />
+        android:id="@+id/textView4"
+        android:layout_width="38dp"
+        android:layout_height="20dp"
+        android:text="like:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/LikeCount"
+        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintStart_toEndOf="@+id/PostPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/PostTag"
+        app:layout_constraintVertical_bias="0.423" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
