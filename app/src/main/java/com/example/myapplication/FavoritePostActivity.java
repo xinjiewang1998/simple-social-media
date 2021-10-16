@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -17,11 +18,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class FavoritePostActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private ArrayList<HashMap<String,Object>> FavoritePostList;
     private ArrayList<HashMap<String,Object>> AllPostList;
@@ -30,11 +33,15 @@ public class FavoritePostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_post);
+        mAuth=FirebaseAuth.getInstance();
+        recyclerView= (RecyclerView)findViewById(R.id.FavoritePostList);
         AllPostList=new ArrayList<>();
         FavoritePostList=new ArrayList<>();
         PositionList=new ArrayList<>();
-        recyclerView= (RecyclerView)findViewById(R.id.FavoritePostList);
-        Button button=(Button)findViewById(R.id.FavoritePost);
+        readFPost();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Button button=(Button)findViewById(R.id.AllPost);
         button.setOnClickListener(FavoritePostListener);
     }
     private void readFPost(){
@@ -42,7 +49,6 @@ public class FavoritePostActivity extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference myRef=firebaseDatabase.getReference("FavoritePost");
         myRef.addValueEventListener(new ValueEventListener(){
-
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot dss: snapshot.getChildren()){
@@ -59,6 +65,9 @@ public class FavoritePostActivity extends AppCompatActivity {
                 System.err.println("Failed to retrieve data, error: "+error.toException());
             }
         });
+
+
+
         DatabaseReference Ref=firebaseDatabase.getReference("allpost");
         Ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -76,19 +85,23 @@ public class FavoritePostActivity extends AppCompatActivity {
                     Plist.put("comment_count",CommentCount);
                     AllPostList.add(Plist);
                 }
-            }
+                for(int i=0;i<PositionList.size();i++){
+                    FavoritePostList.add(AllPostList.get(PositionList.get(i)));
+                }
+                PostAdapter postAdapter=new PostAdapter(getApplicationContext(),FavoritePostList);
+                recyclerView.setAdapter(postAdapter);
 
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                System.err.println("Failed to retrieve data, error: "+error.toException());
+
             }
         });
-         for(int i=0;i<PositionList.size();i++){
-             FavoritePostList.add(AllPostList.get(PositionList.get(i)));
-         }
-         PostAdapter postAdapter=new PostAdapter(getApplicationContext(),FavoritePostList);
-         recyclerView.setAdapter(postAdapter);
-    }
+
+            }
+
+
+
     private View.OnClickListener FavoritePostListener=new View.OnClickListener() {
         @Override
         public void onClick(View v) {

@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +37,7 @@ public class AllPostPage extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private ArrayList<HashMap<String,Object>>AllPostItems;
-    private ArrayList<HashMap<String,Object>> BufferPostList=new ArrayList<>();
+    private ArrayList<HashMap<String,Object>> BufferPostList;
     private PostAdapter postAdapter;
     private PostsConcreteCollection postsConcreteCollection;
     private Iterator PostIterator;
@@ -50,6 +51,7 @@ public class AllPostPage extends AppCompatActivity {
 
         recyclerView=(RecyclerView) findViewById(R.id.AllPostView);
         AllPostItems=new ArrayList<>();
+        BufferPostList=new ArrayList<>();
         SearchResultList=new ArrayList<>();
         readJson();
         PostsearchView=(SearchView)findViewById(R.id.SearchPost);
