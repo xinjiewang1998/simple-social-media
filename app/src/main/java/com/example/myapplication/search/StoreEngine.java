@@ -37,11 +37,11 @@ public class StoreEngine {
 
             for (int i = 0; i < posts.length(); i++) {
                 JSONObject post = (JSONObject) posts.get(i);
-                String image_url = post.getString("img_url");
-                int comment_count = post.getInt("comment_count");
-                int like_count = post.getInt("like_count");
+                String imageUrl = post.getString("img_url");
+                int commentCount = post.getInt("comment_count");
+                int likeCount = post.getInt("like_count");
                 String text = post.getString("text");
-                PostObj postObj = new PostObj(image_url, comment_count, like_count, text);
+                PostObj postObj = new PostObj(imageUrl, commentCount, likeCount, text);
                 postObjs.add(postObj);
             }
 

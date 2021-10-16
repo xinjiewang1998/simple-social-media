@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 
 
+import com.example.myapplication.search.PostObj;
 import com.example.myapplication.search.QueryEngine;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
@@ -169,16 +170,17 @@ public class AllPostPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 AllPostItems.clear();
                for(DataSnapshot dss: snapshot.getChildren()){
-                   HashMap<String,Object> Plist=new HashMap<>();
-                   Integer LikeCount=dss.child("like_count").getValue(Integer.class);
-                   String Text=dss.child("text").getValue(String.class);
-                   Integer CommentCount=dss.child("comment_count").getValue(Integer.class);
-                   String ImgUrl=dss.child("img_url").getValue(String.class);
-                   Plist.put("text",Text);
-                   Plist.put("like_count",LikeCount);
-                   Plist.put("img_url",ImgUrl);
-                   Plist.put("comment_count",CommentCount);
-                   AllPostItems.add(Plist);
+                   HashMap<String,Object> pList=new HashMap<>();
+                   Integer likeCount=dss.child("like_count").getValue(Integer.class);
+                   String text=dss.child("text").getValue(String.class);
+                   Integer commentCount=dss.child("comment_count").getValue(Integer.class);
+                   String imgUrl=dss.child("img_url").getValue(String.class);
+                   pList.put("text",text);
+                   pList.put("like_count",likeCount);
+                   pList.put("img_url",imgUrl);
+                   pList.put("comment_count",commentCount);
+                   PostObj postObj = new PostObj(imgUrl, commentCount, likeCount, text);
+                   AllPostItems.add(pList);
                }
                 postsConcreteCollection=new PostsConcreteCollection();
                 PostIterator=postsConcreteCollection.createIterator();

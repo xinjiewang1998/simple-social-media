@@ -87,6 +87,12 @@ public class eachpost extends AppCompatActivity {
             Integer NewLikeCount=(Integer.parseInt(LIKE_C));
             if(ClickCount%2!=0){
                 NewLikeCount++;
+                Button button=findViewById(R.id.Like);
+                button.setText("Unlike");
+            }
+            else{
+                Button button=findViewById(R.id.Like);
+                button.setText("like");
             }
             ClickCount++;
             myRef.child(Position.toString()).child("like_count").setValue(NewLikeCount);
