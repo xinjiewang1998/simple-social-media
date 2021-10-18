@@ -20,6 +20,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/eachPostImage"
+
+        android:layout_width="175dp"
+        android:layout_height="160dp"
+        app:layout_constraintBottom_toTopOf="@+id/posttext"
+        app:layout_constraintEnd_toStartOf="@+id/Favorite"
+        app:layout_constraintHorizontal_bias="0.746"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/P"
+        app:layout_constraintVertical_bias="0.19" />
+
     <Button
         android:id="@+id/Like"
         android:layout_width="107dp"
@@ -41,7 +53,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/P"
-        app:layout_constraintVertical_bias="0.18" />
+        app:layout_constraintVertical_bias="0.443" />
 
     <TextView
         android:id="@+id/LikeCount"
@@ -62,9 +74,9 @@
         app:icon="@android:drawable/btn_star_big_on"
         app:layout_constraintBottom_toTopOf="@+id/posttext"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.788"
+        app:layout_constraintHorizontal_bias="0.864"
         app:layout_constraintStart_toEndOf="@+id/P"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.153" />
+        app:layout_constraintVertical_bias="0.061" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,8 +11,8 @@ public class QueryEngine {
     StoreEngine storeEngine;
     Parser parser;
 
-    public QueryEngine(String jsonString) {
-        this.storeEngine = new StoreEngine(jsonString);
+    public QueryEngine(List<PostObj> postObjList) {
+        this.storeEngine = new StoreEngine(postObjList);
     }
 
 
