@@ -33,6 +33,7 @@ public class eachpost extends AppCompatActivity {
     private int ClickCount;
     private Boolean flag=false;
     private FirebaseUser firebaseUser;
+    private String imgUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,11 +118,9 @@ public class eachpost extends AppCompatActivity {
                         HashMap<String,Object> UserPost=new HashMap<>();
                         UserPost.put("Position",Position);
                         UserPost.put("User",firebaseUser.getEmail());
+                        //UserPost.put("img_url",)
                         myRef.push().setValue(UserPost);
                         Toast.makeText(getApplicationContext(),"Collect into Favorite Post Successfully",Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(),"Have already collected this post",Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -130,6 +129,9 @@ public class eachpost extends AppCompatActivity {
 
                 }
             });
+            if(flag){
+                Toast.makeText(getApplicationContext(),"Have already collect this post",Toast.LENGTH_SHORT).show();
+            }
         }
     };
     private View.OnClickListener LikeListener=new View.OnClickListener() {

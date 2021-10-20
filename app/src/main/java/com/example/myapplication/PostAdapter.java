@@ -39,12 +39,10 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
     public void onBindViewHolder(@NonNull PostAdapter.PostHolder holder, @SuppressLint("RecyclerView") int position){
 
         if(PostList!=null) {
-            if(PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#')!=-1){
-                holder.getPostTag().setText(PostList.get(getItemCount() - 1 - position).get("text").toString().substring(PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#'), PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#') + 10));
-            }
-            else{
-                holder.getPostTag().setText("#NoTag");
-            }
+            String textString = PostList.get(getItemCount() - 1 - position).get("text").toString();
+            holder.getPostTag().setText(extractEngine.extractTag(textString).toString());
+            holder.getPosterName().setText(extractEngine.extractUserName(textString).toString());
+
             holder.getPosterName().setText(PostList.get(getItemCount() - 1 - position).get("text").toString().substring((PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('@')), PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('@') + 10));
             holder.getLikeCount().setText(PostList.get(getItemCount() - 1 - position).get("like_count").toString());
             holder.setImgUrl(PostList.get(getItemCount() - 1 - position).get("img_url").toString());
