@@ -66,7 +66,7 @@ public class AllPostPage extends AppCompatActivity {
         SearchView PostSearchView = (SearchView) findViewById(R.id.SearchPost);
         PostSearchView.setIconifiedByDefault(true);
         PostSearchView.setSubmitButtonEnabled(true);
-        PostSearchView.onActionViewExpanded();
+        //PostSearchView.onActionViewExpanded();
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -190,6 +190,7 @@ public class AllPostPage extends AppCompatActivity {
             }
             postAdapter = new PostAdapter(getApplicationContext(), BufferPostList);
             recyclerView.setAdapter(postAdapter);
+
         }
 
     };

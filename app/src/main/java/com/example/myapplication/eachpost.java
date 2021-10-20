@@ -52,7 +52,7 @@ public class eachpost extends AppCompatActivity {
         RequestQueue mQueue;
         mQueue = Volley.newRequestQueue(eachpost.this);
 
-        imageUrl.LruImageCache lruImageCache = imageUrl.LruImageCache.instance();
+        LruImageCache lruImageCache = LruImageCache.instance();
 
         ImageLoader imageLoader = new ImageLoader(mQueue, lruImageCache);
         networkImageView.setImageUrl(imgUrl, imageLoader);

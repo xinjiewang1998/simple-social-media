@@ -40,7 +40,7 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
 
         if(PostList!=null) {
             if(PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#')!=-1){
-                holder.getPostTag().setText(PostList.get(getItemCount() - 1 - position).get("text").toString().substring(PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#'), PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#') + 10));
+                holder.getPostTag().setText(PostList.get(getItemCount() - 1 - position).get("text").toString().substring(PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#'),PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#')));
             }
             else{
                 holder.getPostTag().setText("#NoTag");
@@ -131,7 +131,7 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
             RequestQueue mQueue;
             mQueue = Volley.newRequestQueue(context);
 
-            imageUrl.LruImageCache lruImageCache = imageUrl.LruImageCache.instance();
+            LruImageCache lruImageCache = LruImageCache.instance();
 
             ImageLoader imageLoader = new ImageLoader(mQueue, lruImageCache);
             networkImageView.setImageUrl(imgUrl, imageLoader);
