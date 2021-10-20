@@ -40,7 +40,7 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
 
         if(PostList!=null) {
             if(PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#')!=-1){
-                holder.getPostTag().setText(PostList.get(getItemCount() - 1 - position).get("text").toString().substring(PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#'),PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#')));
+                holder.getPostTag().setText(PostList.get(getItemCount() - 1 - position).get("text").toString().substring(PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#'), PostList.get(getItemCount() - 1 - position).get("text").toString().indexOf('#') + 10));
             }
             else{
                 holder.getPostTag().setText("#NoTag");

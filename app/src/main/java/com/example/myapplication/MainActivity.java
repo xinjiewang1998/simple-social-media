@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         logoutButton = findViewById(R.id.logout_button);
         usernameTextView = findViewById(R.id.username);
-        Intent intent = new Intent(getApplicationContext(),allpost.class);
-        startActivity(intent);
+
 
 
     }

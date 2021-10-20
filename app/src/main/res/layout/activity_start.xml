@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/back">
+    android:layout_height="match_parent">
 
     <!-- User image -->
     <com.makeramen.roundedimageview.RoundedImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/portrait"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="100dp"
-
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
         android:src="@drawable/test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:riv_border_color="#333333"
         app:riv_border_width="2dp"
         app:riv_corner_radius="30dp"
         app:riv_mutate_background="true"
         app:riv_oval="false"
         app:riv_tile_mode="repeat"
-        android:layout_gravity="center"
-        />
+        tools:ignore="MissingConstraints" />
 
     <!-- Enter username -->
     <EditText
         android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/frame"
         android:hint="@string/username"
         android:maxLines="1"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/frame"
-        />
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/portrait"
+        tools:ignore="MissingConstraints" />
 
     <!-- Enter password -->
     <EditText
@@ -46,6 +52,8 @@
         android:layout_height="50dp"
         android:textColor="@color/black"
         android:textSize="18sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:hint="@string/password"
         android:maxLines="1"
         android:layout_marginTop="20dp"
@@ -56,38 +64,32 @@
         android:paddingEnd="15dp"
         android:inputType="textPassword"
         android:background="@drawable/frame"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/user_name"
+        tools:ignore="MissingConstraints" />
 
     <!-- Login button and register button -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/frame"
+        android:text="@string/login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
-        <Button
-            android:id="@+id/login_button"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/login"
-            android:background="@drawable/frame"
-            />
-
-        <Button
-            android:id="@+id/register_button"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/register"
-            android:background="@drawable/frame"
-            />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/frame"
+        android:text="@string/register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

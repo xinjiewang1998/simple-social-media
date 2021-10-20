@@ -2,8 +2,8 @@ package com.example.myapplication;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
+import static androidx.test.espresso.assertion.PositionAssertions.isPartiallyAbove;
+import static androidx.test.espresso.assertion.PositionAssertions.isPartiallyBelow;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 import androidx.test.rule.ActivityTestRule;
@@ -13,12 +13,27 @@ import org.junit.Test;
 
 public class AllPostTest {
     @Rule
-    public ActivityTestRule<allpost> mActivityTestRule = new ActivityTestRule<>(allpost.class);
+    public ActivityTestRule<AllPostPage> ActivityTestRule =
+            new ActivityTestRule<>(AllPostPage.class);
+
+    @Test
+    public void allPostUITest() {
+//        onView(withId(R.id.SearchPost)).check(isAbove(withId(R.id.AllPostView)));
+//        onView(withId(R.id.SearchPost)).check(isPartiallyAbove(withId(R.id.AllPostView)));
+        onView(withId(R.id.SearchPost)).check(isPartiallyBelow(withId(R.id.AllPostView)));
+//        onView(withId(R.id.AllPostView)).check(isPartiallyBelow(withId(R.id.SearchPost)));
+        onView(withId(R.id.AllPostView)).check(isPartiallyAbove(withId(R.id.SearchPost)));
+    }
+
 
     @Test
     public void allPost() {
-        onView(withId(R.id.concern)).perform(click()).check(matches(isClickable()));
-        onView(withId(R.id.Hot)).perform(click()).check(matches(isClickable()));
-        onView(withId(R.id.All)).perform(click()).check(matches(isClickable()));
+//        onView(withId(R.id.SearchPost)).perform(
+//                typeText("search"), closeSoftKeyboard());
+//        onView(withId(R.id.SearchPost)).perform(click());
+//        onView(withId(R.id.SearchPost)).perform(pressBack());
+        onView(withId(R.id.AllPostView)).perform(click());
+//        onView(withId(R.id.AllPostView)).perform(pressBack());
     }
+
 }
