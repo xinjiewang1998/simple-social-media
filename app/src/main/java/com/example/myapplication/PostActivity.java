@@ -51,7 +51,7 @@ public class PostActivity extends AppCompatActivity {
         ListView listview=(ListView) findViewById(R.id.post_list);
         listview.setOnItemClickListener(myitemlistener);
 
-        searchExample();
+        //searchExample();
     }
 
 
@@ -72,7 +72,7 @@ public class PostActivity extends AppCompatActivity {
             startActivity(intent);
         }
     };
-
+/*
     private void searchExample() {
         try {
             InputStream is = getAssets().open("allpostdata.json");
@@ -101,4 +101,6 @@ public class PostActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+ */
 }

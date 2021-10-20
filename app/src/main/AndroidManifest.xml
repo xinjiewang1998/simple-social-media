@@ -38,10 +38,10 @@
             android:exported="true" />
         <activity
             android:name=".AllPostPage"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".StartActivity"
-            android:exported="true" >
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,30 +6,25 @@
     android:layout_height="wrap_content">
 
 
-    <ImageView
-        android:id="@+id/PostPhoto"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/PosterName"
         android:layout_width="137dp"
         android:layout_height="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.843"
-        app:layout_constraintStart_toEndOf="@+id/PostPhoto"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.007" />
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/postImage"
+        android:layout_width="114dp"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/PostTag"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/PostTag"
@@ -46,23 +41,23 @@
         android:id="@+id/LikeCount"
         android:layout_width="60dp"
         android:layout_height="19dp"
+        android:layout_marginEnd="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.373"
-        app:layout_constraintStart_toEndOf="@+id/PostPhoto"
         app:layout_constraintTop_toBottomOf="@+id/PosterName"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintVertical_bias="0.435" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="38dp"
         android:layout_height="20dp"
+        android:layout_marginEnd="36dp"
         android:text="like:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/LikeCount"
-        app:layout_constraintHorizontal_bias="0.388"
-        app:layout_constraintStart_toEndOf="@+id/PostPhoto"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toEndOf="@+id/postImage"
         app:layout_constraintTop_toBottomOf="@+id/PostTag"
-        app:layout_constraintVertical_bias="0.423" />
+        app:layout_constraintVertical_bias="0.426" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

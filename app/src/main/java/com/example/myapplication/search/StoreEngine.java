@@ -22,8 +22,9 @@ public class StoreEngine {
     BTree<IndexPostObj> userTree;
     List<PostObj> postObjs;
 
-    public StoreEngine(String jsonString) {
-        postObjs = extractPostObj(jsonString);
+    public StoreEngine(List<PostObj> postObjList) {
+        //postObjs = extractPostObj(jsonString);
+        postObjs = postObjList;
         tagTree = extractTagPostObj(postObjs);
         userTree = extractUserPostObj(postObjs);
     }
