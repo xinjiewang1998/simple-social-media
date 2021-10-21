@@ -54,6 +54,7 @@ public class PostAdapter extends RecyclerView.Adapter <PostAdapter.PostHolder> {
                     intent.putExtra("LIKE_C", PostList.get(getItemCount() - 1 - position).get("like_count").toString());
                     intent.putExtra("TEXT", PostList.get(getItemCount() - 1 - position).get("text").toString());
                     intent.putExtra("POSITION",getItemCount() - 1 - position);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                     context.startActivity(intent);
                 }
             });
