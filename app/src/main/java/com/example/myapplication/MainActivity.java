@@ -4,11 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
-    private TextView logoutButton;
     private TextView usernameTextView;
 
     @Override
@@ -27,10 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        logoutButton = findViewById(R.id.logout_button);
         usernameTextView = findViewById(R.id.username);
-
-
 
     }
 
@@ -42,14 +33,11 @@ public class MainActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() == null) {
             startActivity(new Intent(MainActivity.this, StartActivity.class));
         } else {
-            if(mAuth.getCurrentUser()!= null) {
+            if (mAuth.getCurrentUser() != null) {
                 usernameTextView.setText(mAuth.getCurrentUser().getEmail());
             }
         }
     }
-
-
-
 
 
     public void onClick(View view) {
@@ -61,12 +49,16 @@ public class MainActivity extends AppCompatActivity {
             finish();
             Toast.makeText(MainActivity.this, "Logout succeed", Toast.LENGTH_SHORT).show();
         }
-        if(view.getId() == R.id.message){
-            Intent intent = new Intent(getApplicationContext(),MessageActivity.class);
+        if (view.getId() == R.id.message) {
+            Intent intent = new Intent(getApplicationContext(), MessageActivity.class);
             startActivity(intent);
         }
-        if(view.getId() == R.id.my_post) {
-            Intent intent = new Intent(getApplicationContext(),PostActivity.class);
+        if (view.getId() == R.id.my_post) {
+            Intent intent = new Intent(getApplicationContext(), PostActivity.class);
+            startActivity(intent);
+        }
+        if (view.getId() == R.id.paint_button) {
+            Intent intent = new Intent(getApplicationContext(), PaintActivity.class);
             startActivity(intent);
         }
     }

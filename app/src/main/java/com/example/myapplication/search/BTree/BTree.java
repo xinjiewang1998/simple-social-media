@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * B+Tree
+ *
  * @param <T> the generic type this BTree uses. It extends comparable
  *            which allows us to order two of the same type.
  */
@@ -40,16 +41,16 @@ public class BTree<T extends Comparable<T>> {
         if (key == null)
             throw new IllegalArgumentException("Input cannot be null");
 
-        List<BNode<T>> path =  new ArrayList<BNode<T>>();
+        List<BNode<T>> path = new ArrayList<BNode<T>>();
         root.insert(key, path);   // Feel free to replace this.
 
-        for (int i = path.size()-1; i > 0; i--) {
+        for (int i = path.size() - 1; i > 0; i--) {
             if (path.get(i).keys.size() == order) {
-                split(path.get(i-1), path.get(i));
+                split(path.get(i - 1), path.get(i));
             }
         }
 
-        if(root.keys.size() == order) {
+        if (root.keys.size() == order) {
             BTreeNode<T> newRoot = new BTreeNode<>(order);
             split(newRoot, root);
             root = newRoot;
@@ -91,39 +92,39 @@ public class BTree<T extends Comparable<T>> {
 
 
         // not leaf
-        if(childToSplit instanceof BTreeNode) {
+        if (childToSplit instanceof BTreeNode) {
             BTreeNode<T> leftNode = new BTreeNode<>(order);
             BTreeNode<T> rightNode = new BTreeNode<>(order);
 
             leftNode.keys = childToSplit.keys.get(0, med);
-            rightNode.keys = childToSplit.keys.get(med+1, order);
+            rightNode.keys = childToSplit.keys.get(med + 1, order);
             leftNode.children = ((BTreeNode<T>) childToSplit).children.get(0, med + 1);
             rightNode.children = ((BTreeNode<T>) childToSplit).children.get(med + 1, order + 1);
 
             boolean found = false;
             int i = 0;
             for (; i < node.keys.size(); i++) {
-                if(medValue.compareTo(node.keys.get(i)) <= 0) {
+                if (medValue.compareTo(node.keys.get(i)) <= 0) {
                     node.keys.add(i, medValue);
                     found = true;
                     break;
                 }
             }
 
-            if(!found) {
+            if (!found) {
                 node.keys.add(medValue);
             }
 
-            ((BTreeNode<T>)node).children.remove(childToSplit);
-            ((BTreeNode<T>)node).children.add(i, leftNode);
-            ((BTreeNode<T>)node).children.add(i+1, rightNode);
+            ((BTreeNode<T>) node).children.remove(childToSplit);
+            ((BTreeNode<T>) node).children.add(i, leftNode);
+            ((BTreeNode<T>) node).children.add(i + 1, rightNode);
 
         } else {
 
             BLeafNode<T> leftNode = new BLeafNode<>(order);
             BLeafNode<T> rightNode = new BLeafNode<>(order);
-            leftNode.keys = childToSplit.keys.get(0, med+1);
-            rightNode.keys = childToSplit.keys.get(med+1, order);
+            leftNode.keys = childToSplit.keys.get(0, med + 1);
+            rightNode.keys = childToSplit.keys.get(med + 1, order);
 
             leftNode.prev = ((BLeafNode<T>) childToSplit).prev;
             leftNode.next = rightNode;
@@ -133,20 +134,20 @@ public class BTree<T extends Comparable<T>> {
             boolean found = false;
             int i = 0;
             for (; i < node.keys.size(); i++) {
-                if(medValue.compareTo(node.keys.get(i)) <= 0) {
+                if (medValue.compareTo(node.keys.get(i)) <= 0) {
                     node.keys.add(i, medValue);
                     found = true;
                     break;
                 }
             }
 
-            if(!found) {
+            if (!found) {
                 node.keys.add(medValue);
             }
 
-            ((BTreeNode<T>)node).children.remove(childToSplit);
-            ((BTreeNode<T>)node).children.add(i, leftNode);
-            ((BTreeNode<T>)node).children.add(i+1, rightNode);
+            ((BTreeNode<T>) node).children.remove(childToSplit);
+            ((BTreeNode<T>) node).children.add(i, leftNode);
+            ((BTreeNode<T>) node).children.add(i + 1, rightNode);
         }
     }
 
@@ -200,11 +201,4 @@ public class BTree<T extends Comparable<T>> {
                 ", root=" + root +
                 '}';
     }
-
-    /**
-     * @return Graphical representation of the tree.
-     */
-//    public String display() {
-//        return this.root.display(0);
-//    }
 }

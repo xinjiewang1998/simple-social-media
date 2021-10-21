@@ -7,7 +7,7 @@ import java.util.List;
  * Defines the nodes that make up the BTree.
  * You are free to add helper methods to this class to help you accomplish the tasks.
  */
-class BTreeNode<T extends Comparable<T>> extends BNode<T>{
+class BTreeNode<T extends Comparable<T>> extends BNode<T> {
     /**
      * Fields of the node class.
      */
@@ -38,8 +38,8 @@ class BTreeNode<T extends Comparable<T>> extends BNode<T>{
 
         path.add(this);
 
-        for(int i = 0; i < this.keys.size(); i++) {
-            if(key.compareTo(this.keys.get(i)) <= 0) {
+        for (int i = 0; i < this.keys.size(); i++) {
+            if (key.compareTo(this.keys.get(i)) <= 0) {
                 this.children.get(i).insert(key, path);
                 return;
             }
@@ -55,11 +55,11 @@ class BTreeNode<T extends Comparable<T>> extends BNode<T>{
         }
         // Check if leaf
         for (int i = 0; i < this.keys.size(); i++) {
-            if(this.keys.get(i).compareTo(key) >= 0) {
+            if (this.keys.get(i).compareTo(key) >= 0) {
                 return this.children.get(i).get(key);
             }
         }
-        return this.children.get(this.children.size()-1).get(key);
+        return this.children.get(this.children.size() - 1).get(key);
     }
 
     /**
@@ -67,7 +67,7 @@ class BTreeNode<T extends Comparable<T>> extends BNode<T>{
      */
     @Override
     public T max() {
-        return this.children.get(this.children.size()-1).max();
+        return this.children.get(this.children.size() - 1).max();
     }
 
     /**
@@ -91,20 +91,5 @@ class BTreeNode<T extends Comparable<T>> extends BNode<T>{
                 '}';
     }
 
-    /**
-     * Graphically visualises the tree for human readability.
-     *
-     * @param tabs from the left side of the screen.
-     * @return graph of the tree.
-     */
-//    @Override
-//    public String display(int tabs) {
-//        // StringBuilder is faster than using string concatenation (which in java makes a new object per concatenation).
-//        StringBuilder sb = new StringBuilder(keys.toString());
-//        for (BNode<T> node : children) {
-//            sb.append("\n").append("\t".repeat(tabs)).append("├─").append(node.display(tabs + 1));
-//        }
-//        return sb.toString();
-//    }
 }
 

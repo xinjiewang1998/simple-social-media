@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.paint;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +13,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.example.myapplication.R;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class DrawView extends View {
     private float currentSize = 10f;
     private Paint myPaint;
     private Path myPath;
-    private List<PathLine> lines;
+    private final List<PathLine> lines;
 
     public DrawView(Context context) {
         super(context);

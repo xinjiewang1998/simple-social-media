@@ -3,6 +3,9 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:allowBackup="true"
@@ -12,19 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".FavoritePostActivity"
+            android:name=".PaintActivity"
+            android:exported="false" />
+        <activity
+            android:name=".post.FavoritePostActivity"
             android:exported="true" />
         <activity
-            android:name=".SearchResultActivity"
+            android:name=".post.SearchResultActivity"
             android:exported="true" />
         <activity
-            android:name=".eachpost"
+            android:name=".post.eachpost"
             android:exported="true" />
         <activity
-            android:name=".allpost"
+            android:name=".post.allpost"
             android:exported="true" />
         <activity
-            android:name=".chatBox"
+            android:name=".chat.ChatBox"
             android:exported="true"
             android:parentActivityName=".MessageActivity" />
         <activity
@@ -37,12 +43,11 @@
             android:name=".PostActivity"
             android:exported="true" />
         <activity
-            android:name=".AllPostPage"
+            android:name=".post.AllPostPage"
             android:exported="true" />
         <activity
             android:name=".StartActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

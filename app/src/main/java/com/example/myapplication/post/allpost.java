@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.post;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+
+import com.example.myapplication.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

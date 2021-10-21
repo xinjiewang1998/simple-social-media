@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.chat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,14 +12,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.R;
 import com.example.myapplication.login.User;
 
 import java.util.List;
 
-public class friendAdapter extends RecyclerView.Adapter<friendAdapter.friendHolder> {
+public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.friendHolder> {
     public final Context ctx;
     public final List<User> dataset;
-    public friendAdapter(Context ctx, List<User> dataset){
+    public FriendAdapter(Context ctx, List<User> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -43,7 +44,7 @@ public class friendAdapter extends RecyclerView.Adapter<friendAdapter.friendHold
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(ctx, chatBox.class);
+                intent.setClass(ctx, ChatBox.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                 intent.putExtra("user",dataset.get(position).getEmail());
                 intent.putExtra("userId",dataset.get(position).getId());

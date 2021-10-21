@@ -8,13 +8,15 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.myapplication.chat.ChatBox;
+
 import org.junit.Rule;
 import org.junit.Test;
 
 public class ChatBoxTest111 {
     @Rule
-    public androidx.test.rule.ActivityTestRule<chatBox> ActivityTestRule =
-            new ActivityTestRule<>(chatBox.class);
+    public androidx.test.rule.ActivityTestRule<ChatBox> ActivityTestRule =
+            new ActivityTestRule<>(ChatBox.class);
 
     @Test
     public void chatBoxUITest() {

@@ -18,7 +18,6 @@ public class BNode<T extends Comparable<T>> {
         return null;
     }
 
-
     public T max() {
         return null;
     }

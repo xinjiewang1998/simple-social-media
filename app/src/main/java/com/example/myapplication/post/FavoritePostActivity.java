@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.post;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.R;
+import com.example.myapplication.post.AllPostPage;
+import com.example.myapplication.post.PostAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -83,7 +86,7 @@ public class FavoritePostActivity extends AppCompatActivity {
     private View.OnClickListener FavoritePostListener=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent=new Intent(getApplicationContext(),AllPostPage.class);
+            Intent intent=new Intent(getApplicationContext(), AllPostPage.class);
             startActivity(intent);
         }
     };

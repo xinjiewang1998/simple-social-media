@@ -8,6 +8,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.myapplication.post.AllPostPage;
+
 import org.junit.Rule;
 import org.junit.Test;
 
