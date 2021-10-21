@@ -21,7 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageActivity extends AppCompatActivity {
+
+    // Field
     private FriendAdapter friendAdapter;
+
     private RecyclerView recyclerView;
     private List<User> listFriends;
 
@@ -31,14 +34,16 @@ public class MessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
         recyclerView = findViewById(R.id.list_friends);
-
         listFriends = new ArrayList<>();
         readUser();
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+
+    /**
+     * Add all user into the list, and display on the recyclerView.
+     */
     private void readUser() {
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User");
@@ -52,11 +57,11 @@ public class MessageActivity extends AppCompatActivity {
                     if (!user.getId().equals(firebaseUser.getUid())) {
                         listFriends.add(user);
                     }
+
                     friendAdapter = new FriendAdapter(getApplicationContext(), listFriends);
                     recyclerView.setAdapter(friendAdapter);
 
                 }
-
             }
 
             @Override

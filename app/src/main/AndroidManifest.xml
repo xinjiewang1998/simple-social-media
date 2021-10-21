@@ -21,9 +21,6 @@
             android:name=".post.FavoritePostActivity"
             android:exported="true" />
         <activity
-            android:name=".post.SearchResultActivity"
-            android:exported="true" />
-        <activity
             android:name=".post.eachpost"
             android:exported="true" />
         <activity

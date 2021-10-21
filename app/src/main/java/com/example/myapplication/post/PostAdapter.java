@@ -46,16 +46,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
             String textString = postList.get(getItemCount() - 1 - position).get("text").toString();
             holder.getPostTag().setText(extractEngine.extractTag(textString).toString());
             holder.getPosterName().setText(extractEngine.extractUserName(textString).toString());
-
-            holder.getPosterName().setText(postList.get(getItemCount() - 1 - position).get("text").toString()
-                    .substring((postList.get(getItemCount() - 1 - position).get("text").toString()
-                            .indexOf('@')), postList.get(getItemCount() - 1 - position)
-                            .get("text").toString().indexOf('@') + 10));
-
             holder.getLikeCount().setText(postList.get(getItemCount() - 1 - position).get("like_count").toString());
-
             holder.setImgUrl(postList.get(getItemCount() - 1 - position).get("img_url").toString());
-
             holder.setNetworkImageView();
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +59,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                     intent.putExtra("LIKE_C", postList.get(getItemCount() - 1 - position).get("like_count").toString());
                     intent.putExtra("TEXT", postList.get(getItemCount() - 1 - position).get("text").toString());
                     intent.putExtra("POSITION", getItemCount() - 1 - position);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                     context.startActivity(intent);
                 }
             });
