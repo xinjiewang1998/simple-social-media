@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.login.User;
+
 import java.util.List;
 
 public class friendAdapter extends RecyclerView.Adapter<friendAdapter.friendHolder> {
