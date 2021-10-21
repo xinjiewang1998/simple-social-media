@@ -66,7 +66,7 @@ public class AllPostPage extends AppCompatActivity {
         SearchView PostSearchView = (SearchView) findViewById(R.id.SearchPost);
         PostSearchView.setIconifiedByDefault(true);
         PostSearchView.setSubmitButtonEnabled(true);
-        PostSearchView.onActionViewExpanded();
+        //PostSearchView.onActionViewExpanded();
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -119,7 +119,7 @@ public class AllPostPage extends AppCompatActivity {
     private void findPostPosition(){
 
         for(int i=0;i<outputs.size();i++){
-            for(int j=0;j<500;j++){
+            for(int j=0;j<postObjList.size();j++){
                 if(outputs.get(i).equals(allPostItems.get(j).get("text").toString())){
                     Integer position=(Integer) allPostItems.get(j).get("like_count");
                     String  imgUrl=allPostItems.get(j).get("img_url").toString();
@@ -190,6 +190,7 @@ public class AllPostPage extends AppCompatActivity {
             }
             postAdapter = new PostAdapter(getApplicationContext(), BufferPostList);
             recyclerView.setAdapter(postAdapter);
+
         }
 
     };
@@ -215,9 +216,8 @@ public class AllPostPage extends AppCompatActivity {
                     int likeC=likeCount;
                     PostObj postObj = new PostObj(imgUrl,commentC, likeC, text);
                     allPostItems.add(pList);
-                    if(postObjList.size()<500){
-                        postObjList.add(postObj);
-                    }
+                    postObjList.add(postObj);
+
                 }
                 postsConcreteCollection = new PostsConcreteCollection();
                 PostIterator = postsConcreteCollection.createIterator();
