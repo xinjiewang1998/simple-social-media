@@ -27,12 +27,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class chatBox extends AppCompatActivity {
+    //Field
     TextView friend_name;
     FirebaseUser firebaseUser;
     DatabaseReference reference;
     Intent intent;
     List<Chat> listChat;
-
     RecyclerView recyclerView;
     EditText editText;
     Button send;
@@ -45,13 +45,11 @@ public class chatBox extends AppCompatActivity {
         setContentView(R.layout.activity_chat_box);
         //RecyclerView
         recyclerView = findViewById(R.id.chat_box);
+        friend_name = (TextView) findViewById(R.id.friend_name);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-
-
-        friend_name = (TextView) findViewById(R.id.friend_name);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("user").child(firebaseUser.getUid());
 
@@ -65,6 +63,7 @@ public class chatBox extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Read message from firebase when a new message send to it.
                 readMessage(firebaseUser.getUid(),nameId);
 
             }
@@ -77,6 +76,7 @@ public class chatBox extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // send button to send message to firebase
                 String msg = editText.getText().toString();
                 if(!msg.equals("")){
                     sendMessage(firebaseUser.getUid(),nameId,msg);
@@ -90,9 +90,13 @@ public class chatBox extends AppCompatActivity {
         image.setImageResource(R.drawable.test);
         friend_name.setText(name);
     }
-    public void toProfile(View v){
-//        Intent intent = new Intent(getApplicationContext(),profile.class)
-    }
+    /**
+     * Click function of send button, send message in the box to another user.
+     *
+     * @param sender   the current user
+     * @param receiver the user the current user want to chat with
+     * @param msg      message need to be send
+     */
     private void sendMessage(String sender,String receiver,String msg){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         HashMap<String,Object> hashMap = new HashMap<>();
@@ -102,6 +106,12 @@ public class chatBox extends AppCompatActivity {
         reference.child("Chat").push().setValue(hashMap);
 
     }
+    /**
+     * receive message from firebase
+     *
+     * @param myID   current user's ID
+     * @param userID the id of another user.
+     */
     private void readMessage(String myID,String userID){
         listChat = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("Chat");

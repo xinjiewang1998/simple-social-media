@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/frame_for_user">
-
+    <!-- User image -->
     <ImageView
         android:id="@+id/iv"
         android:layout_width="75dp"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background"
         tools:srcCompat="@tools:sample/avatars" />
-
+    <!-- User name -->
     <TextView
         android:id="@+id/user_name"
         android:layout_width="0dp"

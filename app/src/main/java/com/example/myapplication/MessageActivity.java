@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageActivity extends AppCompatActivity {
+    // Field
     private FirebaseAuth mAuth;
     private friendAdapter friendAdapter;
     private RecyclerView recyclerView;
@@ -31,13 +32,9 @@ public class MessageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        TextView account = (TextView) findViewById(R.id.account_name);
         setContentView(R.layout.activity_message);
         recyclerView = (RecyclerView) findViewById(R.id.list_friends);
         mAuth = FirebaseAuth.getInstance();
-//        String name = mAuth.getCurrentUser().getEmail();
-
-//        account.setText(name);
 
         listFriends = new ArrayList<>();
         readUser();
@@ -46,20 +43,23 @@ public class MessageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void readUser(){
+    /**
+     * Add all user into the list, and display on the recyclerView.
+     */
+    private void readUser() {
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listFriends.clear();
-                for(DataSnapshot snap: snapshot.getChildren()){
+                for (DataSnapshot snap : snapshot.getChildren()) {
                     User user = snap.getValue(User.class);
-                    assert user!=null;
-                    if(!user.getId().equals(firebaseUser.getUid())){
+                    assert user != null;
+                    if (!user.getId().equals(firebaseUser.getUid())) {
                         listFriends.add(user);
                     }
-                    friendAdapter = new friendAdapter(getApplicationContext(),listFriends);
+                    friendAdapter = new friendAdapter(getApplicationContext(), listFriends);
                     recyclerView.setAdapter(friendAdapter);
 
                 }
@@ -72,17 +72,4 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void toReply(View v){
-//        Intent intent  = new Intent(getApplicationContext(),reply.class);
-//        startActivity(intent);
-    }
-    public void toLike(View v){
-//        Intent intent  = new Intent(getApplicationContext(),like.class);
-//        startActivity(intent);
-    }
-    public void chatWith(View v){
-        Intent intent  = new Intent(getApplicationContext(),chatBox.class);
-        startActivity(intent);
-    }
-    }
+}

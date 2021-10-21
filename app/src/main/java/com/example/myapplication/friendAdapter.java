@@ -16,6 +16,7 @@ import java.util.List;
 
 public class friendAdapter extends RecyclerView.Adapter<friendAdapter.friendHolder> {
     public final Context ctx;
+    // Store all users who have registered
     public final List<User> dataset;
     public friendAdapter(Context ctx, List<User> dataset){
         this.ctx = ctx;
