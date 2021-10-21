@@ -35,11 +35,9 @@ public class MessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_message);
         recyclerView = (RecyclerView) findViewById(R.id.list_friends);
         mAuth = FirebaseAuth.getInstance();
-
         listFriends = new ArrayList<>();
         readUser();
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 

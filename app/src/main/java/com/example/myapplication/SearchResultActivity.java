@@ -23,7 +23,6 @@ public class SearchResultActivity extends AppCompatActivity {
         SearchResultList=new ArrayList<>();
         viewSearchResult();
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
     private void viewSearchResult(){

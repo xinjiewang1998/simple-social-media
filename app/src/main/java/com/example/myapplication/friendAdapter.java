@@ -18,7 +18,8 @@ public class friendAdapter extends RecyclerView.Adapter<friendAdapter.friendHold
     public final Context ctx;
     // Store all users who have registered
     public final List<User> dataset;
-    public friendAdapter(Context ctx, List<User> dataset){
+
+    public friendAdapter(Context ctx, List<User> dataset) {
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -26,8 +27,7 @@ public class friendAdapter extends RecyclerView.Adapter<friendAdapter.friendHold
     @NonNull
     @Override
     public friendHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(ctx).inflate(R.layout.activity_holder,parent,false);
-
+        View view = LayoutInflater.from(ctx).inflate(R.layout.activity_holder, parent, false);
         return new friendHolder(view);
     }
 
@@ -35,31 +35,29 @@ public class friendAdapter extends RecyclerView.Adapter<friendAdapter.friendHold
     public void onBindViewHolder(@NonNull friendHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.getName().setText(dataset.get(position).getEmail());
         holder.getImageView().setImageResource(R.drawable.test);
-
-
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(ctx, chatBox.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-                intent.putExtra("user",dataset.get(position).getEmail());
-                intent.putExtra("userId",dataset.get(position).getId());
-
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("user", dataset.get(position).getEmail());
+                intent.putExtra("userId", dataset.get(position).getId());
                 ctx.startActivity(intent);
 
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return dataset.size();
     }
 
-    public class friendHolder extends RecyclerView.ViewHolder{
+    public class friendHolder extends RecyclerView.ViewHolder {
         private final ImageView imageView;
         private final TextView name;
+
         public ImageView getImageView() {
             return imageView;
         }
@@ -67,7 +65,6 @@ public class friendAdapter extends RecyclerView.Adapter<friendAdapter.friendHold
         public TextView getName() {
             return name;
         }
-
 
         public friendHolder(@NonNull View itemView) {
             super(itemView);

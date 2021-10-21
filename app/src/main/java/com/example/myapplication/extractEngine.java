@@ -40,9 +40,9 @@ public class extractEngine {
         if (tags.size() == 0) {
             tags.add("NoTag");
         }
-
         return tags;
     }
+
     /**
      * Extract user name(@) from given String text.
      *
@@ -66,7 +66,6 @@ public class extractEngine {
         if (userNames.size() == 0) {
             userNames.add("Unknown user");
         }
-
         return userNames;
     }
 

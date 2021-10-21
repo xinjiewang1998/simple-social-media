@@ -46,25 +46,24 @@ public class chatBox extends AppCompatActivity {
         //RecyclerView
         recyclerView = findViewById(R.id.chat_box);
         friend_name = (TextView) findViewById(R.id.friend_name);
+        image = (ImageView) findViewById(R.id.pic);
+        recyclerView = findViewById(R.id.chat_box);
+        editText = findViewById(R.id.input_text);
+        send = findViewById(R.id.send);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("user").child(firebaseUser.getUid());
-
-        image = (ImageView)findViewById(R.id.pic);
-        recyclerView = findViewById(R.id.chat_box);
-        editText = findViewById(R.id.input_text);
-        send = findViewById(R.id.send);
-        intent  = getIntent();
+        intent = getIntent();
         String nameId = intent.getStringExtra("userId");
-        String name  = intent.getStringExtra("user");
+        String name = intent.getStringExtra("user");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // Read message from firebase when a new message send to it.
-                readMessage(firebaseUser.getUid(),nameId);
+                readMessage(firebaseUser.getUid(), nameId);
 
             }
 
@@ -78,18 +77,17 @@ public class chatBox extends AppCompatActivity {
             public void onClick(View view) {
                 // send button to send message to firebase
                 String msg = editText.getText().toString();
-                if(!msg.equals("")){
-                    sendMessage(firebaseUser.getUid(),nameId,msg);
+                if (!msg.equals("")) {
+                    sendMessage(firebaseUser.getUid(), nameId, msg);
                 }
                 editText.setText("");
             }
         });
-
-
         friend_name = (TextView) findViewById(R.id.friend_name);
         image.setImageResource(R.drawable.test);
         friend_name.setText(name);
     }
+
     /**
      * Click function of send button, send message in the box to another user.
      *
@@ -97,35 +95,35 @@ public class chatBox extends AppCompatActivity {
      * @param receiver the user the current user want to chat with
      * @param msg      message need to be send
      */
-    private void sendMessage(String sender,String receiver,String msg){
+    private void sendMessage(String sender, String receiver, String msg) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        HashMap<String,Object> hashMap = new HashMap<>();
-        hashMap.put("sender",sender);
-        hashMap.put("receiver",receiver);
-        hashMap.put("msg",msg);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("sender", sender);
+        hashMap.put("receiver", receiver);
+        hashMap.put("msg", msg);
         reference.child("Chat").push().setValue(hashMap);
-
     }
+
     /**
      * receive message from firebase
      *
      * @param myID   current user's ID
      * @param userID the id of another user.
      */
-    private void readMessage(String myID,String userID){
+    private void readMessage(String myID, String userID) {
         listChat = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("Chat");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listChat.clear();
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Chat chat = dataSnapshot.getValue(Chat.class);
-                    if(chat.getReceiver().equals(myID)&&chat.getSender().equals(userID)||
-                    chat.getReceiver().equals(userID)&&chat.getSender().equals(myID)){
-                    listChat.add(chat);
+                    if (chat.getReceiver().equals(myID) && chat.getSender().equals(userID) ||
+                            chat.getReceiver().equals(userID) && chat.getSender().equals(myID)) {
+                        listChat.add(chat);
                     }
-                    messageAdapter = new MessageAdapter(chatBox.this,listChat);
+                    messageAdapter = new MessageAdapter(chatBox.this, listChat);
                     recyclerView.setAdapter(messageAdapter);
                 }
             }
