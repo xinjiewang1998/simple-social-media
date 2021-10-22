@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ChatBox extends AppCompatActivity {
+public class ChatBoxActivity extends AppCompatActivity {
     //Field
     TextView friend_name;
     FirebaseUser firebaseUser;
@@ -123,7 +123,7 @@ public class ChatBox extends AppCompatActivity {
                             chat.getReceiver().equals(userID) && chat.getSender().equals(myID)) {
                         listChat.add(chat);
                     }
-                    messageAdapter = new MessageAdapter(ChatBox.this, listChat);
+                    messageAdapter = new MessageAdapter(ChatBoxActivity.this, listChat);
                     recyclerView.setAdapter(messageAdapter);
                 }
             }

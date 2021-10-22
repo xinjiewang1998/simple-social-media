@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.chat.ChatBoxActivity;
 import com.example.myapplication.paint.DrawView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -225,38 +227,38 @@ public class PaintActivity extends AppCompatActivity {
             System.out.println(imageSaved);
 
             new MultipartUploadRequest(this, uuid, "https://ccyy.xyz/api/v2/post/" + uuid)
-                .addFileToUpload(Environment.getExternalStorageDirectory() + "/temp.png", "file")
+                    .addFileToUpload(Environment.getExternalStorageDirectory() + "/temp.png", "file")
 //                    .setNotificationConfig(new UploadNotificationConfig())
-                .setMethod("POST")
-                .setDelegate(new UploadStatusDelegate() {
-                    @Override
-                    public void onProgress(Context context, UploadInfo uploadInfo) {
-                        Toast.makeText(context, "Transmission in progress", Toast.LENGTH_SHORT).show();
-                    }
+                    .setMethod("POST")
+                    .setDelegate(new UploadStatusDelegate() {
+                        @Override
+                        public void onProgress(Context context, UploadInfo uploadInfo) {
+                            Toast.makeText(context, "Transmission in progress", Toast.LENGTH_SHORT).show();
+                        }
 
-                    @Override
-                    public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
-                        Toast.makeText(context, "Transmission failed", Toast.LENGTH_SHORT).show();
-                        exception.printStackTrace();
-                    }
+                        @Override
+                        public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
+                            Toast.makeText(context, "Transmission failed", Toast.LENGTH_SHORT).show();
+                            exception.printStackTrace();
+                        }
 
-                    @Override
-                    public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
-                        Toast.makeText(context, "Transmission success", Toast.LENGTH_SHORT).show();
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                tellServer(uuid);
-                            }
-                        }, 1000);
-                    }
+                        @Override
+                        public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
+                            Toast.makeText(context, "Transmission success", Toast.LENGTH_SHORT).show();
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    tellServer(uuid);
+                                }
+                            }, 1000);
+                        }
 
-                    @Override
-                    public void onCancelled(Context context, UploadInfo uploadInfo) {
-                        Toast.makeText(context, "Transmission cancel", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .startUpload();
+                        @Override
+                        public void onCancelled(Context context, UploadInfo uploadInfo) {
+                            Toast.makeText(context, "Transmission cancel", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .startUpload();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -296,7 +298,8 @@ public class PaintActivity extends AppCompatActivity {
 
         @Override
         public void onOpen(WebSocket webSocket, Response response) {
-            webSocket.send(String.format("{\"Proto\":1,\"Proto1\":5,\"PlayerName\":\"%s\",\"Img\":\"%s\"}",
+            webSocket.send(String.format("{\"Proto\":1,\"Proto1\":5,\"PlayerName\":\"%s\",\"PlayerId\":\"%s\",\"Img\":\"%s\"}",
+                    user.getEmail(),
                     user.getUid(),
                     uuid + ".png"));
 //            webSocket.send(ByteString.decodeHex("abcd"));
@@ -308,11 +311,19 @@ public class PaintActivity extends AppCompatActivity {
         public void onMessage(WebSocket webSocket, String message) {
             Base64.Decoder decoder = Base64.getMimeDecoder();
             try {
-                print("Receive Message: " + message);
+//                print("Receive Message: " + message);
                 String jsonString = new String(decoder.decode(message), "UTF-8");
                 JSONObject json = new JSONObject(jsonString);
                 String playerName = json.getString("PlayerName");
-                print("Receive Message: " + playerName);
+                String playerId = json.getString("PlayerId");
+//                print("Receive Message: " + playerName);
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), ChatBoxActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("user", playerName);
+                intent.putExtra("userId", playerId);
+                startActivity(intent);
+
             } catch (UnsupportedEncodingException | JSONException e) {
                 e.printStackTrace();
             }
@@ -336,16 +347,15 @@ public class PaintActivity extends AppCompatActivity {
     }
 
     private void tellServer(String uuid) {
-        Request request = new Request.Builder().url("ws://ccyy.xyz/api/v3/")
+        Request request = new Request.Builder().url("wss://ccyy.xyz/api/v3/")
                 .removeHeader("User-Agent")
 //                .addHeader("User-Agent", WebSettings.getDefaultUserAgent(getApplicationContext()))
-
 //                .addHeader("Accept-Encoding", "gzip, deflate")
 //                .addHeader("Accept-Language", "en-US,en;q=0.9")
                 .addHeader("Cache-Control", "no-cache")
                 .addHeader("Connection", "Upgrade")
-                .addHeader("Host",  "ccyy.xyz")
-                .addHeader("Origin", "http://ccyy.xyz")
+                .addHeader("Host", "ccyy.xyz")
+                .addHeader("Origin", "https://ccyy.xyz")
                 .addHeader("Pragma", "no-cache")
 //                .addHeader("Sec-WebSocket-Extensions", "permessage-deflate; client_max_window_bits")
 //                .addHeader("Sec-WebSocket-Key", "YOVtGgshqpKQuHJ+Q5ilaQ==")
@@ -356,12 +366,10 @@ public class PaintActivity extends AppCompatActivity {
 
         EchoWebSocketListener listener = new EchoWebSocketListener();
         WebSocket webSocket = mClient.newWebSocket(request, listener);
-        print("Headers: " + request.headers().toString());
-        mClient.dispatcher().executorService().shutdown();
+//        print("Headers: " + request.headers().toString());
+        mClient.dispatcher().executorService();//.shutdown();
     }
 
-    // "GET /api/v3/ HTTP/1.1" 101 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36"
-    // "GET /api/v3/ HTTP/1.1" 403 5 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36"
 //    @Override
 //    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 //        if(requestCode == MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {

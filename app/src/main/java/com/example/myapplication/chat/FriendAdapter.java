@@ -41,7 +41,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.friendHold
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(ctx, ChatBox.class);
+                intent.setClass(ctx, ChatBoxActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                 intent.putExtra("user",dataset.get(position).getEmail());
                 intent.putExtra("userId",dataset.get(position).getId());

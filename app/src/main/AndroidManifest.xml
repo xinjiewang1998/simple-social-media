@@ -24,7 +24,7 @@
             android:name=".post.EachPostActivity"
             android:exported="true" />
         <activity
-            android:name=".chat.ChatBox"
+            android:name=".chat.ChatBoxActivity"
             android:exported="true"
             android:parentActivityName=".MessageActivity" />
         <activity
