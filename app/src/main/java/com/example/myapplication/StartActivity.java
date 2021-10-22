@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,8 +22,6 @@ import java.util.HashMap;
 
 public class StartActivity extends AppCompatActivity {
 
-    private Button loginButton;
-    private Button registerButton;
     private EditText usernameTextField;
     private EditText passwordTextField;
 
@@ -37,61 +34,53 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        //Intent intent = new Intent(getApplicationContext(), allpost.class);
-        //startActivity(intent);
 
 
+        mAuth = FirebaseAuth.getInstance();
 
-    mAuth =FirebaseAuth.getInstance();
+        Button loginButton = findViewById(R.id.login_button);
 
-    loginButton = findViewById(R.id.login_button);
+        Button registerButton = findViewById(R.id.register_button);
 
-    registerButton = findViewById(R.id.register_button);
+        usernameTextField = findViewById(R.id.user_name);
 
-    usernameTextField = findViewById(R.id.user_name);
-
-    passwordTextField = findViewById(R.id.password);
+        passwordTextField = findViewById(R.id.password);
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick (View v){
-//                Toast.makeText(StartActivity.this, "Login button clicked", Toast.LENGTH_LONG).show();
+            @Override
+            public void onClick(View v) {
 
-        username = usernameTextField.getText().toString();
-        password = passwordTextField.getText().toString();
+                username = usernameTextField.getText().toString();
+                password = passwordTextField.getText().toString();
 
-        if (username.isEmpty()) {
-            usernameTextField.setError("Username is required");
-        } else if (password.isEmpty()) {
-            passwordTextField.setError("Password is required");
-        } else {
-            loginUser(username, password);
-        }
-    }
-    });
+                if (username.isEmpty()) {
+                    usernameTextField.setError("Username is required");
+                } else if (password.isEmpty()) {
+                    passwordTextField.setError("Password is required");
+                } else {
+                    loginUser(username, password);
+                }
+            }
+        });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick (View v){
-//                Toast.makeText(StartActivity.this, "Register button clicked", Toast.LENGTH_LONG).show();
+            @Override
+            public void onClick(View v) {
+                username = usernameTextField.getText().toString();
+                password = passwordTextField.getText().toString();
 
-        username = usernameTextField.getText().toString();
-        password = passwordTextField.getText().toString();
+                if (username.isEmpty()) {
+                    usernameTextField.setError("Username is required");
+                } else if (password.isEmpty()) {
+                    passwordTextField.setError("Password is required");
+                } else {
+                    registerUser(username, password);
+                }
 
-        if (username.isEmpty()) {
-            usernameTextField.setError("Username is required");
-//                    Toast.makeText(StartActivity.this, "Username is empty", Toast.LENGTH_LONG).show();
-        } else if (password.isEmpty()) {
-            passwordTextField.setError("Password is required");
-//                    Toast.makeText(StartActivity.this, "Password is empty", Toast.LENGTH_LONG).show();
-        } else {
-            registerUser(username, password);
-        }
-
+            }
+        });
     }
-    });
-}
 
 
     @Override
@@ -104,12 +93,11 @@ public class StartActivity extends AppCompatActivity {
     }
 
 
-
     private void registerUser(String username, String password) {
         mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
+                if (task.isSuccessful()) {
                     FirebaseUser user = mAuth.getCurrentUser();
                     reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
                     HashMap<String, Object> hashMap = new HashMap<>();
@@ -143,7 +131,6 @@ public class StartActivity extends AppCompatActivity {
             }
         });
     }
-
 }
 
 

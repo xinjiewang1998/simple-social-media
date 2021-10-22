@@ -1,12 +1,12 @@
 package com.example.myapplication.search.QParser;
 
-
 import com.example.myapplication.search.PostObj;
 import com.example.myapplication.search.StoreEngine;
 
 import java.util.List;
 
 /**
+ *
  */
 public class Parser {
     // The tokenizer (class field) this parser will use.

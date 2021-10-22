@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaintActivity">
+
+    <com.example.myapplication.paint.DrawView
+        android:id="@+id/draw_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/size_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/size_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/size_buttons"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#2196F3"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/m_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:onClick="selectSizes"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/l_button"
+            app:layout_constraintEnd_toStartOf="@+id/l_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/s_button"
+            app:layout_constraintTop_toTopOf="@+id/l_button"
+            app:srcCompat="@drawable/circle" />
+
+        <ImageView
+            android:id="@+id/l_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:onClick="selectSizes"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/x_button"
+            app:layout_constraintEnd_toStartOf="@+id/x_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/m_button"
+            app:layout_constraintTop_toTopOf="@+id/x_button"
+            app:srcCompat="@drawable/circle" />
+
+        <ImageView
+            android:id="@+id/s_button"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:clickable="true"
+            android:onClick="selectSizes"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/m_button"
+            app:layout_constraintEnd_toStartOf="@+id/m_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/m_button"
+            app:srcCompat="@drawable/circle" />
+
+        <ImageView
+            android:id="@+id/x_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:onClick="selectSizes"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/l_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/circle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttons"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/purple_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/brush_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:onClick="showSizes"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/camera_button"
+            app:layout_constraintEnd_toStartOf="@+id/camera_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/camera_button"
+            app:srcCompat="@drawable/brush" />
+
+        <ImageView
+            android:id="@+id/camera_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:onClick="saveImage"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/undo_button"
+            app:layout_constraintEnd_toStartOf="@+id/undo_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/brush_button"
+            app:layout_constraintTop_toTopOf="@+id/undo_button"
+            app:srcCompat="@drawable/camera" />
+
+        <ImageView
+            android:id="@+id/erase_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:onClick="erase"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/undo_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/erazer" />
+
+        <ImageView
+            android:id="@+id/undo_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:onClick="undo"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/erase_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/camera_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/undo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/blue_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="visible"
+        android:clickable="true"
+        android:onClick="selectColors"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/color_button"
+        app:layout_constraintEnd_toEndOf="@+id/color_button"
+        app:layout_constraintStart_toStartOf="@+id/color_button"
+        app:layout_constraintTop_toTopOf="@+id/color_button"
+        app:srcCompat="@drawable/circle"
+        app:tint="@color/blue" />
+
+    <ImageView
+        android:id="@+id/green_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="visible"
+        android:clickable="true"
+        android:onClick="selectColors"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/color_button"
+        app:layout_constraintEnd_toEndOf="@+id/color_button"
+        app:layout_constraintStart_toStartOf="@+id/color_button"
+        app:layout_constraintTop_toTopOf="@+id/color_button"
+        app:srcCompat="@drawable/circle"
+        app:tint="@color/green" />
+
+    <ImageView
+        android:id="@+id/orange_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="visible"
+        android:clickable="true"
+        android:onClick="selectColors"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/color_button"
+        app:layout_constraintEnd_toEndOf="@+id/color_button"
+        app:layout_constraintStart_toStartOf="@+id/color_button"
+        app:layout_constraintTop_toTopOf="@+id/color_button"
+        app:srcCompat="@drawable/circle"
+        app:tint="@color/orange" />
+
+    <ImageView
+        android:id="@+id/pink_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="visible"
+        android:clickable="true"
+        android:onClick="selectColors"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/color_button"
+        app:layout_constraintEnd_toEndOf="@+id/color_button"
+        app:layout_constraintStart_toStartOf="@+id/color_button"
+        app:layout_constraintTop_toTopOf="@+id/color_button"
+        app:srcCompat="@drawable/circle"
+        app:tint="@color/pink" />
+
+    <ImageView
+        android:id="@+id/color_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="showColors"
+        app:layout_constraintBottom_toTopOf="@+id/size_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/color"
+        app:tint="@color/purple_200" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

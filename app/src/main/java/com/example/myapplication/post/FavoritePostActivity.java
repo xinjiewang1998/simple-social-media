@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.post;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.R;
+import com.example.myapplication.PostActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -53,10 +55,19 @@ public class FavoritePostActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot dss: snapshot.getChildren()){
                         if(firebaseUser.getEmail().equals(dss.child("User").getValue(String.class))){
-                            Integer p=dss.child("Position").getValue(Integer.class);
-                            PositionList.add(p);
+                            //Integer p=dss.child("Position").getValue(Integer.class);
+                            HashMap<String,Object> Plist=new HashMap<>();
+                            Integer likeCount=dss.child("like_count").getValue(Integer.class);
+                            String  text=dss.child("text").getValue(String.class);
+                            String  img_url=dss.child("img_url").getValue(String.class);
+                            Plist.put("text",text);
+                            Plist.put("like_count",likeCount);
+                            Plist.put("img_url",img_url);
+                            FavoritePostList.add(Plist);
                         }
                     }
+                PostAdapter postAdapter=new PostAdapter(getApplicationContext(),FavoritePostList);
+                recyclerView.setAdapter(postAdapter);
 
             }
 
@@ -65,47 +76,16 @@ public class FavoritePostActivity extends AppCompatActivity {
                 System.err.println("Failed to retrieve data, error: "+error.toException());
             }
         });
+    }
 
 
-
-        DatabaseReference Ref=firebaseDatabase.getReference("allpost");
-        Ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                AllPostList.clear();
-                for(DataSnapshot dss: snapshot.getChildren()){
-                    HashMap<String,Object> Plist=new HashMap<>();
-                    Integer LikeCount=dss.child("like_count").getValue(Integer.class);
-                    String Text=dss.child("text").getValue(String.class);
-                    Integer CommentCount=dss.child("comment_count").getValue(Integer.class);
-                    String ImgUrl=dss.child("img_url").getValue(String.class);
-                    Plist.put("text",Text);
-                    Plist.put("like_count",LikeCount);
-                    Plist.put("img_url",ImgUrl);
-                    Plist.put("comment_count",CommentCount);
-                    AllPostList.add(Plist);
-                }
-                for(int i=0;i<PositionList.size();i++){
-                    FavoritePostList.add(AllPostList.get(PositionList.get(i)));
-                }
-                PostAdapter postAdapter=new PostAdapter(getApplicationContext(),FavoritePostList);
-                recyclerView.setAdapter(postAdapter);
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-            }
 
 
 
     private View.OnClickListener FavoritePostListener=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent=new Intent(getApplicationContext(),AllPostPage.class);
+            Intent intent=new Intent(getApplicationContext(), PostActivity.class);
             startActivity(intent);
         }
     };

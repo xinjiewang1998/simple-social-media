@@ -1,15 +1,23 @@
-package com.example.myapplication;
+package com.example.myapplication.login;
 
+/**
+ * class to store the user information receive from firebase.
+ */
 public class User {
+    //Field
     private String email;
     private String id;
-    public User(){}
+
+    // Constructor
+    public User() {
+    }
 
     public User(String name, String id) {
         this.email = name;
         this.id = id;
     }
 
+    //getter and setter.
     public String getEmail() {
         return email;
     }

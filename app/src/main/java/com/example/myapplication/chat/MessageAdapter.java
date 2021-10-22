@@ -1,8 +1,7 @@
-package com.example.myapplication;
+package com.example.myapplication.chat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -31,9 +31,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     @Override
     public MessageHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(viewType==1){
+            // load the right side layout
             View view = LayoutInflater.from(ctx).inflate(R.layout.chat_item_right,parent,false);
             return new MessageHolder(view);
         }else {
+            // load the left side layout
             View view = LayoutInflater.from(ctx).inflate(R.layout.chat_item_left,parent,false);
             return new MessageHolder(view);
         }
@@ -74,7 +76,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
 
     @Override
     public int getItemViewType(int position) {
+        // current user
         fUser  =FirebaseAuth.getInstance().getCurrentUser();
+        // determine the message show on the left side or right side.
         if(dataset.get(position).getSender().equals(fUser.getUid())){
             return 1;
         }

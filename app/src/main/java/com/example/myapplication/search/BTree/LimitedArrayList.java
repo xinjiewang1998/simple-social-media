@@ -5,6 +5,7 @@ import java.util.Collection;
 
 /**
  * An ArrayList which has a limited holding capacity.
+ *
  * @param <T> the generic type this LimitedArray uses.
  */
 public class LimitedArrayList<T> extends ArrayList<T> {

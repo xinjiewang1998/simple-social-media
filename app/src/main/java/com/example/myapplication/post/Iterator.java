@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.post;
 
 public interface Iterator {
     public boolean hasNext();

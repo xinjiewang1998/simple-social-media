@@ -53,7 +53,7 @@ public class Tokenizer {
             currentToken = new Token(")", Token.Type.RBRA);
         if (firstChar == '#') {
             int i = 1;
-            while(i < buffer.length()
+            while (i < buffer.length()
                     && (Character.isAlphabetic(buffer.charAt(i)) || Character.isDigit(buffer.charAt(i)))) {
                 i++;
             }
@@ -61,7 +61,7 @@ public class Tokenizer {
         }
         if (firstChar == '@') {
             int i = 1;
-            while(i < buffer.length()
+            while (i < buffer.length()
                     && (Character.isAlphabetic(buffer.charAt(i)) || Character.isDigit(buffer.charAt(i)))) {
                 i++;
             }

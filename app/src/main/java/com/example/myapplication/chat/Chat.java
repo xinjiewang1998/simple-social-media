@@ -1,10 +1,15 @@
-package com.example.myapplication;
+package com.example.myapplication.chat;
 
+/**
+ * Store the information receive from firebase.
+ */
 public class Chat {
+    //Field
     private String sender;
-    private  String receiver;
-    private  String msg;
+    private String receiver;
+    private String msg;
 
+    //Constructor
     public Chat(String sender, String receiver, String msg) {
         this.sender = sender;
         this.receiver = receiver;
@@ -14,6 +19,7 @@ public class Chat {
     public Chat() {
     }
 
+    // getter and setter
     public void setSender(String sender) {
         this.sender = sender;
     }

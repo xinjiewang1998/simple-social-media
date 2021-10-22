@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.post;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class eachpost extends AppCompatActivity {
+public class EachPostActivity extends AppCompatActivity {
     private Integer Position;
     private String LIKE_C;
     private TextView textView_like;
@@ -34,24 +35,25 @@ public class eachpost extends AppCompatActivity {
     private Boolean flag=false;
     private FirebaseUser firebaseUser;
     private String imgUrl;
+    private String TEXT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_eachpost);
+        setContentView(R.layout.activity_each_post);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         ClickCount=1;
         Intent intent=getIntent();
         LIKE_C=intent.getStringExtra("LIKE_C");
-        String TEXT=intent.getStringExtra("TEXT");
+        TEXT=intent.getStringExtra("TEXT");
         Position=intent.getIntExtra("POSITION",0);
-        String imgUrl=intent.getStringExtra("IMG_URL");
+        imgUrl=intent.getStringExtra("IMG_URL");
         textView_like=(TextView)findViewById(R.id.LikeCount);
         TextView textView_text=(TextView)findViewById(R.id.posttext);
         textView_like.setText(LIKE_C);
         textView_text.setText(TEXT);
         NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.eachPostImage);
         RequestQueue mQueue;
-        mQueue = Volley.newRequestQueue(eachpost.this);
+        mQueue = Volley.newRequestQueue(EachPostActivity.this);
 
         LruImageCache lruImageCache = LruImageCache.instance();
 
@@ -109,16 +111,17 @@ public class eachpost extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot dss: snapshot.getChildren()){
-                        if(Position.equals(dss.child("Position").getValue(Integer.class)) && firebaseUser.getEmail().equals(dss.child("User").getValue(String.class))){
+                        if(TEXT.equals(dss.child("text").getValue(String.class)) && firebaseUser.getEmail().equals(dss.child("User").getValue(String.class))){
                             flag=true;     // not to add duplicate post for the same user.
                             break;
                         }
                     }
                     if(!flag){
                         HashMap<String,Object> UserPost=new HashMap<>();
-                        UserPost.put("Position",Position);
                         UserPost.put("User",firebaseUser.getEmail());
-                        //UserPost.put("img_url",)
+                        UserPost.put("img_url",imgUrl);
+                        UserPost.put("like_count",Integer.parseInt(LIKE_C));
+                        UserPost.put("text",TEXT);
                         myRef.push().setValue(UserPost);
                         Toast.makeText(getApplicationContext(),"Collect into Favorite Post Successfully",Toast.LENGTH_SHORT).show();
                     }

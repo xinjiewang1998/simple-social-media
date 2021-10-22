@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.post;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.example.myapplication.R;
+import com.example.myapplication.post.PostAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +26,6 @@ public class SearchResultActivity extends AppCompatActivity {
         SearchResultList=new ArrayList<>();
         viewSearchResult();
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
     private void viewSearchResult(){

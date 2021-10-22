@@ -1,6 +1,6 @@
 package com.example.myapplication.search;
 
-public class PostObj{
+public class PostObj {
 
     String image_url;
     int comment_count;
