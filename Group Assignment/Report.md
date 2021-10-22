@@ -37,71 +37,32 @@ The following is a report template to help your team successfully provide all th
 
 ## Conflict Resolution Protocol
 
-1. Listen to the counterpart
-2. Explain to other members
-3. Argue with clear text
-4. Establish a constructive dailogue
-5. Vote for the decision
-
+1. *Listen to the counterpart.*
+2. *Explain to other members.*
+3. *Argue with clear text.*
+4. *Establish a constructive dialogue.*
+5. *Vote for the decision.*
 
 ## Application Description
 
-*[What is your application, what does it do? Include photos or diagrams if necessary]*
-
-*Here is a pet specific social media application example*
-
-*PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
-
-DrawAndMatch is a social media application specifically designed for artist,
-it provides a paint and match functionality to.. such as a could draw ...., direct message..., likes and favorites..., with user-friendly ui.
-
+*DrawAndMatch is a social media application specifically designed for artists and people who like painting, It provides painting and matching functions to promote user communication and make friends. For example, users can draw pictures, match friends through the similarity of pictures, send messages directly between friends, like and favorite posts, have a user-friendly UI, and so on. *
 
 **Application Use Cases and or Examples**
 
-*[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
+*Targets Users: Painters and people who like painting*
 
-*Here is a pet training application example*
+* *Users can draw a picture they like.*
+* *Users can match with similar person base on the image*
 
-*Molly wants to inquiry about her cat, McPurr's recent troublesome behaviour*
-1. *Molly notices that McPurr has been hostile since...*
-2. *She makes a post about... with the tag...*
-3. *Lachlan, a vet, writes a reply to Molly's post...*
-4. ...
-5. *Molly gives Lachlan's reply a 'tick' response*
+*Targets Users: People watching the Forum*
 
-
-*Here is a map navigation application example*
-
-*Targets Users: Drivers*
-
-* *Users can use it to navigate in order to reach the destinations.*
-* *Users can learn the traffic conditions*
-* ...
-
-*Target Users: Those who want to find some good restaurants*
-
-* *Users can find nearby restaurants and the application can give recommendations*
-* ...
-
-
-
-1. draw a picture you like
-   Target Users
-2. match with similar person base on teh image
-   Target Users
-3. search and view others post
-   Target Users
-4. chat to teh author
-   Target Users
-5. like and favorites
-   Target Users
-
-
-*List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
+* *Users can search and view others posts.*
+* *Users can chat to the author of post.*
+* *Users can interact with posts, such like and favorites.*
 
 ## Application UML
 
-![ClassDiagramExample](images/ClassDiagramExample.png)
+![ClassDiagramExample](/Group%20Assignment/images/ClassDiagramExample.png)
 *[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
 
 Chat.java
@@ -222,65 +183,49 @@ post排版
 
 ## Testing Summary
 
-*[What features have you tested? What is your testing coverage?]*
+*Number of test cases: 10*
 
-*Here is an example:*
+*Code coverage: StartActivity, MainActivity, MessageActivity, ChatBoxActivity, PostActivity, FavoritePostActivity, EachPostActivity and PaintActivity*
 
-*Number of test cases: ...*
+*Types of tests created: displayUITest, positionUITest, buttonTest, intentTest, searchViewTest and recycleViewTest*
 
-*Code coverage: ...*
-
-*Types of tests created: ...*
-
-*Please provide some screenshots of your testing summary, showing the achieved testing coverage. Feel free to provide further details on your tests.*
+[StartActivityTest](/Group%20Assignment/images/test1.png)
+[StartActivityLoginTest](/Group%20Assignment/images/test2.png)
+[MainActivityTest](/Group%20Assignment/images/test4.png)
+[PostActivityTest](/Group%20Assignment/images/test3.png)
+[PaintTest](/Group%20Assignment/images/test5.png)
+[MessageTest](/Group%20Assignment/images/test6.png)
 
 ## Implemented Features
 
+*UI Design and Testing*
 
-*[What features have you implemented?]*
+2. *UI tests using espresso or similar. Please note that your tests must be of reasonable quality. (For UI testing, you may use something such as espresso) a. Espresso is not covered in lectures/labs, but is a simple framework to write Android UI tests. (hard) *
 
-*Here is an example:*
+*Greater Data Usage, Handling and Sophistication*
 
-*User Privacy*
+2. *User profile activity containing a media file (image, animation (e.g. gif), video). (easy)*
 
-1. *Friendship. Users may send friend requests which are then accepted or denied. (easy)*
-2. *Privacy I: A user must approve a friend's request based on privacy settings. (easy)*
-3. *Privacy II: A user can only see a profile that is Public (consider that there are at least two types of profiles: public and private). (easy)*
-4. *Privacy III: A user can only follow someone who shares at least one mutual friend based on privacy settings. (Medium)*
+*User Interactivity*
+
+1. *The ability to micro-interact with 'posts' (e.g. like, report, etc.) [stored in-memory].(easy)*
+
+*Peer to Peer Messaging*
+
+1. *Provide users with the ability to message each other directly. (hard)*
 
 *Firebase Integration*
+
 1. *Use Firebase to implement user Authentication/Authorisation. (easy)*
 2. *Use Firebase to persist all data used in your app (this item replace the requirement to retrieve data from a local file) (medium)*
 
-1. UI tests using espresso or similar. Please note that your tests must be of reasonable
-   quality. (For UI testing, you may use something such as espresso)
-   a. Espresso is not covered in lectures/labs, but is a simple framework to write
-   Android UI tests. (hard) [周四下午，周五]
+*New feature*
 
-2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)
-
-3. The ability to micro-interact with 'posts' (e.g. like, report, etc.) [stored in-memory].(easy)
-
-4. Provide users with the ability to message each other directly. (hard)
-
-5. Use Firebase to implement user Authentication/Authorisation. (easy)
-
-6. Use Firebase to persist all data used in your app (this item replace the requirement
-   to retrieve data from a local file) (medium)
-
-7. Paint
-
-
-*List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
+1. *Paint and matching similar graphs. (hard)*
 
 ## Team Meetings
 
-*Here is an example:*
-
-- *[Team Meeting 1](MeetingTemplate.md)*
-- *[Team Meeting 2](MeetingTemplate.md)*
-- *[Team Meeting 3](MeetingTemplate.md)*
-- *[Team Meeting 4](MeetingTemplate.md)*
-- ...
-
-*Either write your meeting minutes here or link to documents that contain them. There must be at least 3 team meetings.*
+- *[Team Meeting 1](/Group%20Assignment/MeetingMinuteWeek6.md)*
+- *[Team Meeting 2](/Group%20Assignment/MeetingMinutesWeek7.md)*
+- *[Team Meeting 3](/Group%20Assignment/MettingMinutesWeek8.md)*
+- *[Team Meeting 4](/Group%20Assignment/MeetingMinutesWeek9.md)*

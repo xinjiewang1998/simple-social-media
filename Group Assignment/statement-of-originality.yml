@@ -33,11 +33,11 @@ assets:
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
 members:
-  - name:
-    uid:
-  - name:
-    uid:
-  - name:
-    uid:
-  - name:
-    uid:
+  - name: Lingchao Zhang
+    uid: u7368778
+  - name: Xinjie Wang
+    uid: u7201825
+  - name: Xiang Lu
+    uid: u7224266
+  - name: Jiaan Guo
+    uid: u7323660
