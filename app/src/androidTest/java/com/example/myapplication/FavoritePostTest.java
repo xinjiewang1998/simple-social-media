@@ -17,11 +17,16 @@ import android.content.Intent;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 
+import com.example.myapplication.post.FavoritePostActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 
 public class FavoritePostTest {
-    //This class is for testing the AllPostPage intent to FavoritePost.
+
+    /* Must execute after the StartActivityLoginTest*/
+
+    //This class is for testing the FavoritePost.
     @Rule
     public IntentsTestRule<FavoritePostActivity> mIntentsRule =
             new IntentsTestRule<>(FavoritePostActivity.class);
@@ -53,12 +58,12 @@ public class FavoritePostTest {
         // Clicks a button
         onView(withId(R.id.AllPost)).perform(click());
 
-        // Verifies that the MainActivity received an intent
+        // Verifies that the AllPostActivity received an intent
         Intent resultData = new Intent();
         Instrumentation.ActivityResult result =
                 new Instrumentation.ActivityResult(Activity.RESULT_OK, resultData);
 
-        // Set up result stubbing when an intent sent to "contacts" is seen.
+        // Set up result stubbing when an intent sent to AllPostActivity.
         intending(toPackage("com.example.myapplication")).respondWith(result);
 
         // Assert that the data we set up above is shown.

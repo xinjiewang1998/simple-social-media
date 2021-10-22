@@ -19,6 +19,8 @@ import org.junit.Test;
 
 public class LogoutTest {
 
+    /* Must execute after the StartActivityLoginTest*/
+
     // Instantiate an IntentsTestRule object.
     @Rule
     public IntentsTestRule<MainActivity> mIntentsRule =
@@ -30,15 +32,15 @@ public class LogoutTest {
         // Clicks a button
         onView(withId(R.id.logout_button)).perform(click());
 
-        // Verifies that the MainActivity received an intent
+        // Verifies that the StartActivity received an intent
         Intent resultData = new Intent();
         Instrumentation.ActivityResult result =
                 new Instrumentation.ActivityResult(Activity.RESULT_OK, resultData);
 
-        // Set up result stubbing when an intent sent to "contacts" is seen.
+        // Set up result stubbing when an intent sent to StartActivity.
         intending(toPackage("com.example.myapplication")).respondWith(result);
 
-        // Assert that the user id is shown.
+        // Assert that the login page is shown.
         onView(withText("LOGIN")).check(matches(withText("LOGIN")));
     }
 }

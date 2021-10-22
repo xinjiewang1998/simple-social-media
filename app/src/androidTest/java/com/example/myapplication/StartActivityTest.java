@@ -20,6 +20,8 @@ import org.junit.Test;
 
 public class StartActivityTest {
 
+    /* Must execute before the StartActivityLoginTest*/
+
     // This test is for the activity_start.xml and StartActivity.java
     @Rule
     public ActivityTestRule<StartActivity> activityRule =

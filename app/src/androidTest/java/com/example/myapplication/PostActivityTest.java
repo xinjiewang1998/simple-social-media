@@ -5,6 +5,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.PositionAssertions.isCompletelyAbove;
 import static androidx.test.espresso.assertion.PositionAssertions.isCompletelyBelow;
+import static androidx.test.espresso.assertion.PositionAssertions.isPartiallyAbove;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intending;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
@@ -23,14 +24,14 @@ import androidx.test.espresso.intent.rule.IntentsTestRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-public class AllPostPageTest {
+public class PostActivityTest {
 
     /* Must execute after the StartActivityLoginTest*/
 
     // Instantiate an IntentsTestRule object.
     @Rule
-    public IntentsTestRule<AllPostPage> mIntentsRule =
-            new IntentsTestRule<>(AllPostPage.class);
+    public IntentsTestRule<PostActivity> mIntentsRule =
+            new IntentsTestRule<>(PostActivity.class);
 
     // Check the SearchPost, FavoritePost and AllPostView is display on screen.
     @Test
@@ -45,7 +46,7 @@ public class AllPostPageTest {
     public void positionUITest() {
         onView(withId(R.id.SearchPost)).check(isCompletelyAbove(withId(R.id.FavoritePost)));
         onView(withText(R.string.FavoritePost)).check(isCompletelyBelow(withId(R.id.SearchPost)));
-        onView(withId(R.id.FavoritePost)).check(isCompletelyAbove(withId(R.id.AllPostView)));
+        onView(withId(R.id.FavoritePost)).check(isPartiallyAbove(withId(R.id.AllPostView)));
     }
 
     // Check the button "FavoritePost" is clickable.
@@ -75,16 +76,16 @@ public class AllPostPageTest {
         // Clicks a button
         onView(withId(R.id.FavoritePost)).perform(click());
 
-        // Verifies that the MainActivity received an intent
+        // Verifies that the FavoritePostActivity received an intent
         Intent resultData = new Intent();
         Instrumentation.ActivityResult result =
                 new Instrumentation.ActivityResult(Activity.RESULT_OK, resultData);
 
-        // Set up result stubbing when an intent sent to "contacts" is seen.
-        intending(toPackage("com.example.myapplication")).respondWith(result);
+        // Set up result stubbing when an intent sent to FavoritePostActivity.
+        intending(toPackage("com.example.myapplication.post")).respondWith(result);
 
         // Assert that the data we set up above is shown.
-        onView(withId(R.id.FavoritePostList)).check(matches(isDisplayed()));
+        onView(withText("POST")).check(matches(isDisplayed()));
     }
 
 }
