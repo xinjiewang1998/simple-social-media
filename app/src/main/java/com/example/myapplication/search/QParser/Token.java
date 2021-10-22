@@ -7,11 +7,11 @@ import java.util.Objects;
  * Each token has its surface form saved in {@code token}
  * and type saved in {@code type} which is one of the predefined type in Type enum.
  * The following are the different types of tokens:
- * INT: integer
- * ADD: +
- * SUB: -
- * MUL: *
- * DIV: /
+ * TAG: string
+ * USER: string
+ * AND: +
+ * OR: -
+ * NOT: /
  * LBRA: (
  * RBRA: )
  */

@@ -22,7 +22,12 @@ public class AndExp extends Exp {
         return "(" + term.show() + " & " + exp.show() + ")";
     }
 
-
+    /**
+     * in term and exp
+     * set + retain for intersect
+     *
+     * @return list of post obj
+     */
     @Override
     public List<PostObj> evaluate() {
         // AND

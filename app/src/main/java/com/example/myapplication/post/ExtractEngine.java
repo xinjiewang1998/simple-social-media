@@ -1,11 +1,10 @@
-package com.example.myapplication;
+package com.example.myapplication.post;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class extractEngine {
+public class ExtractEngine {
     // Regex
     private static final String HASHTAG_REGEX = "#[a-zA-Z0-9]+\\b";
     private static final String USERNAME_REGEX = "@[a-zA-Z0-9]+\\b";

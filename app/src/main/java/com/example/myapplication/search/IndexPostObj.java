@@ -10,6 +10,11 @@ public class IndexPostObj implements Comparable<IndexPostObj> {
         this.index = index;
     }
 
+    /**
+     * compare by index, used in b+tree
+     * @param indexPostObj the index - post obj
+     * @return greater or smaller
+     */
     @Override
     public int compareTo(IndexPostObj indexPostObj) {
         return this.index.compareTo(indexPostObj.index);

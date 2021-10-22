@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Defines the nodes that make up the BTree.
+ * Defines the nodes that make up the B+Tree non-leaf nodes.
  * You are free to add helper methods to this class to help you accomplish the tasks.
  */
 class BTreeNode<T extends Comparable<T>> extends BNode<T> {
     /**
      * Fields of the node class.
      */
-    LimitedArrayList<BNode<T>> children;   // Children of the node.
+    LimitedArrayList<BNode<T>> children;   // non-leaf node has children
 
     /**
      * Constructor which initialises the fields.
@@ -38,6 +38,7 @@ class BTreeNode<T extends Comparable<T>> extends BNode<T> {
 
         path.add(this);
 
+        // non-leaf node does not insert, pass to leaf node to insert in B+Tree
         for (int i = 0; i < this.keys.size(); i++) {
             if (key.compareTo(this.keys.get(i)) <= 0) {
                 this.children.get(i).insert(key, path);
@@ -48,12 +49,18 @@ class BTreeNode<T extends Comparable<T>> extends BNode<T> {
 
     }
 
+    /**
+     * Get a key from the tree.
+     *
+     * @param key to be searched.
+     */
     @Override
     public List<T> get(T key) {
         if (key == null) {
             return null;
         }
-        // Check if leaf
+
+        // non-leaf node does not get, pass to leaf node to get in B+Tree
         for (int i = 0; i < this.keys.size(); i++) {
             if (this.keys.get(i).compareTo(key) >= 0) {
                 return this.children.get(i).get(key);

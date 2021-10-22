@@ -22,6 +22,12 @@ public class OrExp extends Exp {
         return "(" + term.show() + " | " + exp.show() + ")";
     }
 
+    /**
+     * in term or exp
+     * set + addall for union
+     *
+     * @return list of post obj
+     */
     @Override
     public List<PostObj> evaluate() {
         // OR

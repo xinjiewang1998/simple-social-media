@@ -8,6 +8,11 @@ class BLeafNode<T extends Comparable<T>> extends BNode<T> {
     BLeafNode<T> prev;
     BLeafNode<T> next;
 
+    /**
+     * Leaf node for B+Tree
+     * leaf node has prev and next connections in B+Tree
+     * @param order
+     */
     public BLeafNode(int order) {
         super(order);
         this.prev = null;
@@ -36,10 +41,16 @@ class BLeafNode<T extends Comparable<T>> extends BNode<T> {
         this.keys.add(key);
     }
 
+    /**
+     * get the key from the node.
+     *
+     * @param key to be searched.
+     */
     @Override
     public List<T> get(T key) {
         List<T> keys = new ArrayList<>();
         BLeafNode<T> current = this;
+        // search a consecutive nodes to get all values in B+Tree
         while (current != null) {
             List<T> newKeys = current.simpleGet(key);
             keys.addAll(newKeys);
@@ -51,7 +62,11 @@ class BLeafNode<T extends Comparable<T>> extends BNode<T> {
         return keys;
     }
 
-
+    /**
+     * get the key from the one node only.
+     *
+     * @param key to be searched.
+     */
     public List<T> simpleGet(T key) {
         if (key == null) {
             return null;

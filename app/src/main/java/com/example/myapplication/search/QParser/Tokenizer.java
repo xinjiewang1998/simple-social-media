@@ -75,7 +75,7 @@ public class Tokenizer {
                 && firstChar != '@'
                 && firstChar != '#')
             throw new Token.IllegalTokenException("IllegalToken");
-        // ########## YOUR CODE ENDS HERE ##########
+
         // Remove the extracted token from buffer
         int tokenLen = currentToken.getToken().length();
         buffer = buffer.substring(tokenLen);

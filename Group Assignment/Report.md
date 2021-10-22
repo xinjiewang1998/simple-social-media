@@ -30,14 +30,19 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
+| u7368778 | Lingchao Zhang | developer |
+| u7201825 | Xinjie Wang | developer |
+| u7224266 | Xiang Lu | developer |
+| u7323660 | Jiaan Guo | developer |
 
 ## Conflict Resolution Protocol
 
-*[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
+1. Listen to the counterpart
+2. Explain to other members
+3. Argue with clear text
+4. Establish a constructive dailogue
+5. Vote for the decision
+
 
 ## Application Description
 
@@ -46,6 +51,10 @@ The following is a report template to help your team successfully provide all th
 *Here is a pet specific social media application example*
 
 *PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
+
+DrawAndMatch is a social media application specifically designed for artist,
+it provides a paint and match functionality to.. such as a could draw ...., direct message..., likes and favorites..., with user-friendly ui.
+
 
 **Application Use Cases and or Examples**
 
@@ -60,6 +69,7 @@ The following is a report template to help your team successfully provide all th
 4. ...
 5. *Molly gives Lachlan's reply a 'tick' response*
 
+
 *Here is a map navigation application example*
 
 *Targets Users: Drivers*
@@ -73,6 +83,20 @@ The following is a report template to help your team successfully provide all th
 * *Users can find nearby restaurants and the application can give recommendations*
 * ...
 
+
+
+1. draw a picture you like
+   Target Users
+2. match with similar person base on teh image
+   Target Users
+3. search and view others post
+   Target Users
+4. chat to teh author
+   Target Users
+5. like and favorites
+   Target Users
+
+
 *List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
 
 ## Application UML
@@ -80,23 +104,44 @@ The following is a report template to help your team successfully provide all th
 ![ClassDiagramExample](images/ClassDiagramExample.png)
 *[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
 
+Chat.java
+ChatBox.java
+ExtractEngine.java
+FriendAdapter.java - FriendHolder.class
+MessageActivity.java
+MessageAdaptor.java - MessageHolder.class
+User.java
+
+AllPostPage.java - MyTask.class PostsConcreteCollection.class - PCIterator.class
+eachpost.java - LruImageCache.class
+PostAdaptor.java - LruImageCache.class (Least recently used) PostHolder.class
+Iterator.java
+IterableCollection.java
+
+
 ## Application Design and Decisions
 
 *Please give clear and concise descriptions for each subsections of this part. It would be better to list all the concrete items for each subsection and give no more than `5` concise, crucial reasons of your design. Here is an example for the subsection `Data Structures`:*
 
 *I used the following data structures in my project:*
 
+1. BTreeMap
+2. HashSet
+3. ArrayList
+4. Hashmap [string] object -/- firebase
+5.
+
 1. *LinkedList*
 
-   * *Objective: It is used for storing xxxx for xxx feature.*
+    * *Objective: It is used for storing xxxx for xxx feature.*
 
-   * *Locations: line xxx in XXX.java, ..., etc.*
+    * *Locations: line xxx in XXX.java, ..., etc.*
 
-   * *Reasons:*
+    * *Reasons:*
 
-     * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
+        * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
 
-     * *We don't need to access the item by index for this feature*
+        * *We don't need to access the item by index for this feature*
 
 2. ...
 
@@ -108,6 +153,9 @@ The following is a report template to help your team successfully provide all th
 
 **Design Patterns**
 
+Iterator
+Template
+
 *[What design patterns did your team utilise? Where and why?]*
 
 **Grammars**
@@ -117,6 +165,7 @@ The following is a report template to help your team successfully provide all th
 \<Non-Terminal> ::= \<some output>
 <br>
 \<Non-Terminal> ::= \<some output>
+
 
 *[How do you design the grammar? What are the advantages of your designs?]*
 
@@ -128,9 +177,13 @@ The following is a report template to help your team successfully provide all th
 
 **Surpise Item**
 
+//
+
 *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
 
 **Other**
+
+//
 
 *[What other design decisions have you made which you feel are relevant? Feel free to separate these into their own subheadings.]*
 
@@ -140,10 +193,27 @@ The following is a report template to help your team successfully provide all th
 
 *Here is an example:*
 
+
+username too long
+chat touxiang
+profile anniu
+baise liaotiankuang huanyanse
+sousuo kuang zai dingshang
+unlike的e呢？
+文字排版
+toast 两次
+弹一会就没了
+post排版
+删除老页面
+#NoTag (显示问题)
+
+
+
+
 1. *Bug 1:*
 
 - *A space bar (' ') in the sign in email will crash the application.*
-- ... 
+- ...
 
 2. *Bug 2:*
 3. ...
@@ -166,6 +236,7 @@ The following is a report template to help your team successfully provide all th
 
 ## Implemented Features
 
+
 *[What features have you implemented?]*
 
 *Here is an example:*
@@ -181,6 +252,25 @@ The following is a report template to help your team successfully provide all th
 1. *Use Firebase to implement user Authentication/Authorisation. (easy)*
 2. *Use Firebase to persist all data used in your app (this item replace the requirement to retrieve data from a local file) (medium)*
 
+1. UI tests using espresso or similar. Please note that your tests must be of reasonable
+   quality. (For UI testing, you may use something such as espresso)
+   a. Espresso is not covered in lectures/labs, but is a simple framework to write
+   Android UI tests. (hard) [周四下午，周五]
+
+2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)
+
+3. The ability to micro-interact with 'posts' (e.g. like, report, etc.) [stored in-memory].(easy)
+
+4. Provide users with the ability to message each other directly. (hard)
+
+5. Use Firebase to implement user Authentication/Authorisation. (easy)
+
+6. Use Firebase to persist all data used in your app (this item replace the requirement
+   to retrieve data from a local file) (medium)
+
+7. Paint
+
+
 *List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
 
 ## Team Meetings
@@ -188,6 +278,9 @@ The following is a report template to help your team successfully provide all th
 *Here is an example:*
 
 - *[Team Meeting 1](MeetingTemplate.md)*
+- *[Team Meeting 2](MeetingTemplate.md)*
+- *[Team Meeting 3](MeetingTemplate.md)*
+- *[Team Meeting 4](MeetingTemplate.md)*
 - ...
 
 *Either write your meeting minutes here or link to documents that contain them. There must be at least 3 team meetings.*

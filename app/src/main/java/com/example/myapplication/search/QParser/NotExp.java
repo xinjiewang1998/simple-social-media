@@ -23,6 +23,12 @@ public class NotExp extends Exp {
         return "( !" + factor.show() + ")";
     }
 
+    /**
+     * not in exp
+     * world - set for not
+     *
+     * @return list of post obj
+     */
     @Override
     public List<PostObj> evaluate() {
         // NOT

@@ -49,14 +49,17 @@ public class MainActivity extends AppCompatActivity {
             finish();
             Toast.makeText(MainActivity.this, "Logout succeed", Toast.LENGTH_SHORT).show();
         }
+        // click message
         if (view.getId() == R.id.message) {
             Intent intent = new Intent(getApplicationContext(), MessageActivity.class);
             startActivity(intent);
         }
+        // click post
         if (view.getId() == R.id.my_post) {
             Intent intent = new Intent(getApplicationContext(), PostActivity.class);
             startActivity(intent);
         }
+        // click paint
         if (view.getId() == R.id.paint_button) {
             Intent intent = new Intent(getApplicationContext(), PaintActivity.class);
             startActivity(intent);

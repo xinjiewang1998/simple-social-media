@@ -22,7 +22,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     public final List<Chat> dataset;
     FirebaseUser fUser;
 
-    public MessageAdapter(Context ctx, List<Chat> dataset){
+    public MessageAdapter(Context ctx, List<Chat> dataset) {
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -30,34 +30,35 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     @NonNull
     @Override
     public MessageHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(viewType==1){
+        if (viewType == 1) {
             // load the right side layout
-            View view = LayoutInflater.from(ctx).inflate(R.layout.chat_item_right,parent,false);
+            View view = LayoutInflater.from(ctx).inflate(R.layout.chat_item_right, parent, false);
             return new MessageHolder(view);
-        }else {
+        } else {
             // load the left side layout
-            View view = LayoutInflater.from(ctx).inflate(R.layout.chat_item_left,parent,false);
+            View view = LayoutInflater.from(ctx).inflate(R.layout.chat_item_left, parent, false);
             return new MessageHolder(view);
         }
-
 
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull MessageHolder holder, @SuppressLint("RecyclerView") int position) {
-            Chat chat = dataset.get(position);
-            holder.getMsg_show().setText(chat.getMsg());
-            holder.getProfile_image().setImageResource(R.drawable.test);
+        Chat chat = dataset.get(position);
+        holder.getMsg_show().setText(chat.getMsg());
+        holder.getProfile_image().setImageResource(R.drawable.test);
     }
+
     @Override
     public int getItemCount() {
         return dataset.size();
     }
 
-    public class MessageHolder extends RecyclerView.ViewHolder{
+    public class MessageHolder extends RecyclerView.ViewHolder {
         private final ImageView profile_image;
         private final TextView msg_show;
+
         public ImageView getProfile_image() {
             return profile_image;
         }
@@ -77,12 +78,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     @Override
     public int getItemViewType(int position) {
         // current user
-        fUser  =FirebaseAuth.getInstance().getCurrentUser();
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
         // determine the message show on the left side or right side.
-        if(dataset.get(position).getSender().equals(fUser.getUid())){
+        if (dataset.get(position).getSender().equals(fUser.getUid())) {
             return 1;
-        }
-        else{
+        } else {
             return 0;
         }
     }

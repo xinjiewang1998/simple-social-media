@@ -37,6 +37,7 @@ import java.util.TimerTask;
 
 
 public class PostActivity extends AppCompatActivity {
+
     private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private ArrayList<HashMap<String, Object>> allPostItems;
@@ -48,7 +49,8 @@ public class PostActivity extends AppCompatActivity {
     private List<PostObj> postObjList;
     private ArrayList<Integer> postPosition;
     private List<String> outputs;
-    private ArrayList<String>  imgUrlList;
+    private ArrayList<String> imgUrlList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +61,10 @@ public class PostActivity extends AppCompatActivity {
         allPostItems = new ArrayList<>();
         BufferPostList = new ArrayList<>();
         SearchResultList = new ArrayList<>();
-        postObjList=new ArrayList<>();
-        postPosition=new ArrayList<>();
-        outputs=new ArrayList<>();
-        imgUrlList=new ArrayList<>();
+        postObjList = new ArrayList<>();
+        postPosition = new ArrayList<>();
+        outputs = new ArrayList<>();
+        imgUrlList = new ArrayList<>();
         readJson();
         SearchView PostSearchView = (SearchView) findViewById(R.id.SearchPost);
         PostSearchView.setIconifiedByDefault(true);
@@ -77,33 +79,33 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if (!TextUtils.isEmpty(query)) {
-                        QueryEngine queryEngine = new QueryEngine(postObjList);
-                        outputs = queryEngine.queryText(query);
-                        if (outputs != null && outputs.size() != 0) {
-                          findPostPosition();
-                          for(int i=0;i<outputs.size();i++){
-                              HashMap<String, Object> SingleResult = new HashMap<>();
-                              SingleResult.put("like_count",postPosition.get(i));
-                              SingleResult.put("text", outputs.get(i));
-                              SingleResult.put("img_url",imgUrlList.get(i));
-                              SearchResultList.add(SingleResult);
-                          }
+                    QueryEngine queryEngine = new QueryEngine(postObjList);
+                    outputs = queryEngine.queryText(query);
+                    if (outputs != null && outputs.size() != 0) {
+                        findPostPosition();
+                        for (int i = 0; i < outputs.size(); i++) {
+                            HashMap<String, Object> SingleResult = new HashMap<>();
+                            SingleResult.put("like_count", postPosition.get(i));
+                            SingleResult.put("text", outputs.get(i));
+                            SingleResult.put("img_url", imgUrlList.get(i));
+                            SearchResultList.add(SingleResult);
                         }
+                    }
                     Intent intent = new Intent(getApplicationContext(), SearchResultActivity.class);
                     ArrayList<String> TextList = new ArrayList<>();
                     ArrayList<Integer> LikeCountList = new ArrayList<>();
-                    ArrayList<String> imgList=new ArrayList<>();
+                    ArrayList<String> imgList = new ArrayList<>();
                     for (int j = 0; j < SearchResultList.size(); j++) {
                         String text = SearchResultList.get(j).get("text").toString();
                         Integer LikeCount = (Integer) SearchResultList.get(j).get("like_count");
-                        String imgUrl=SearchResultList.get(j).get("img_url").toString();
+                        String imgUrl = SearchResultList.get(j).get("img_url").toString();
                         TextList.add(text);
                         LikeCountList.add(LikeCount);
                         imgList.add(imgUrl);
                     }
                     intent.putStringArrayListExtra("TEXTLIST", TextList);
                     intent.putIntegerArrayListExtra("LIKECOUNTLIST", LikeCountList);
-                    intent.putStringArrayListExtra("IMGLIST",imgList);
+                    intent.putStringArrayListExtra("IMGLIST", imgList);
                     startActivity(intent);
 
 
@@ -117,13 +119,14 @@ public class PostActivity extends AppCompatActivity {
             }
         });
     }
-    private void findPostPosition(){
 
-        for(int i=0;i<outputs.size();i++){
-            for(int j=0;j<postObjList.size();j++){
-                if(outputs.get(i).equals(allPostItems.get(j).get("text").toString())){
-                    Integer position=(Integer) allPostItems.get(j).get("like_count");
-                    String  imgUrl=allPostItems.get(j).get("img_url").toString();
+    private void findPostPosition() {
+
+        for (int i = 0; i < outputs.size(); i++) {
+            for (int j = 0; j < postObjList.size(); j++) {
+                if (outputs.get(i).equals(allPostItems.get(j).get("text").toString())) {
+                    Integer position = (Integer) allPostItems.get(j).get("like_count");
+                    String imgUrl = allPostItems.get(j).get("img_url").toString();
                     postPosition.add(position);
                     imgUrlList.add(imgUrl);
                 }
@@ -131,6 +134,7 @@ public class PostActivity extends AppCompatActivity {
         }
 
     }
+
     private View.OnClickListener AllPostListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -213,9 +217,9 @@ public class PostActivity extends AppCompatActivity {
                     pList.put("like_count", likeCount);
                     pList.put("img_url", imgUrl);
                     pList.put("comment_count", commentCount);
-                    int commentC=commentCount;
-                    int likeC=likeCount;
-                    PostObj postObj = new PostObj(imgUrl,commentC, likeC, text);
+                    int commentC = commentCount;
+                    int likeC = likeCount;
+                    PostObj postObj = new PostObj(imgUrl, commentC, likeC, text);
                     allPostItems.add(pList);
                     postObjList.add(postObj);
 

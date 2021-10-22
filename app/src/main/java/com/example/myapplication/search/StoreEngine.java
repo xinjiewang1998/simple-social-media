@@ -22,13 +22,24 @@ public class StoreEngine {
     BTree<IndexPostObj> userTree;
     List<PostObj> postObjs;
 
+    public StoreEngine(String jsonString) {
+        postObjs = extractPostObj(jsonString);
+        tagTree = extractTagPostObj(postObjs);
+        userTree = extractUserPostObj(postObjs);
+    }
+
     public StoreEngine(List<PostObj> postObjList) {
-        //postObjs = extractPostObj(jsonString);
         postObjs = postObjList;
         tagTree = extractTagPostObj(postObjs);
         userTree = extractUserPostObj(postObjs);
     }
 
+    /**
+     * extract post object from json string
+     *
+     * @param jsonString the json string to extract
+     * @return list of post obj
+     */
     public List<PostObj> extractPostObj(String jsonString) {
 
         List<PostObj> postObjs = new ArrayList<PostObj>();
@@ -36,6 +47,7 @@ public class StoreEngine {
             JSONObject json = new JSONObject(jsonString);
             JSONArray posts = (JSONArray) json.get("allpost");
 
+            // extract all fields, and then create new postobj
             for (int i = 0; i < posts.length(); i++) {
                 JSONObject post = (JSONObject) posts.get(i);
                 String imageUrl = post.getString("img_url");
@@ -52,7 +64,12 @@ public class StoreEngine {
         return postObjs;
     }
 
-
+    /**
+     * extract tag and add tag post obj to b+tree
+     *
+     * @param postObjs the list of post obj
+     * @return btree of index post obj
+     */
     public BTree<IndexPostObj> extractTagPostObj(List<PostObj> postObjs) {
         Pattern pattern = Pattern.compile(HASHTAG_REGEX);
         BTree<IndexPostObj> bTree = new BTree<>(ORDER);
@@ -81,6 +98,12 @@ public class StoreEngine {
         return bTree;
     }
 
+    /**
+     * extract tag and add user post obj to b+tree
+     *
+     * @param postObjs the list of post obj
+     * @return btree of index post obj
+     */
     public BTree<IndexPostObj> extractUserPostObj(List<PostObj> postObjs) {
         Pattern pattern = Pattern.compile(USERNAME_REGEX);
         BTree<IndexPostObj> bTree = new BTree<>(ORDER);
@@ -117,6 +140,12 @@ public class StoreEngine {
         return this.postObjs.size();
     }
 
+    /**
+     * query all post obj given tag
+     *
+     * @param tag to search
+     * @return list of post obj
+     */
     public List<PostObj> queryTag(String tag) {
         List<PostObj> returnedPostObjs = new ArrayList<>();
         List<IndexPostObj> indexPostObjs = this.tagTree.get(new IndexPostObj(null, tag));
@@ -126,6 +155,12 @@ public class StoreEngine {
         return returnedPostObjs;
     }
 
+    /**
+     * query all post obj given user
+     *
+     * @param user to search
+     * @return list of post obj
+     */
     public List<PostObj> queryUser(String user) {
         List<PostObj> returnedPostObjs = new ArrayList<>();
         List<IndexPostObj> indexPostObjs = this.userTree.get(new IndexPostObj(null, user));

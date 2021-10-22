@@ -13,17 +13,16 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
-import android.webkit.WebSettings;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.chat.ChatBoxActivity;
+import com.example.myapplication.paint.CustomWebSocket;
 import com.example.myapplication.paint.DrawView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,7 +30,6 @@ import com.google.firebase.auth.FirebaseUser;
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.ServerResponse;
 import net.gotev.uploadservice.UploadInfo;
-import net.gotev.uploadservice.UploadNotificationConfig;
 import net.gotev.uploadservice.UploadStatusDelegate;
 
 import org.json.JSONException;
@@ -54,20 +52,24 @@ import okio.ByteString;
 
 public class PaintActivity extends AppCompatActivity {
 
+    // Permission for read and write
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 0;
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 0;
 
-
+    // views
     private List<ImageView> colorButtons;
-
     private ConstraintLayout sizeButton;
     private boolean isSizeOpen;
     private boolean isColorOpen;
 
-    private OkHttpClient mClient;
 
+
+    // after pairing, jump to chat with firebase
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    private CustomWebSocket client;
+    private CustomWebSocket mClient;
+    // uuid for image transfer to ccyy.xyz
     private String uuid;
 
 
@@ -76,17 +78,16 @@ public class PaintActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paint);
 
+        // request read and write permission
         requestStoragePermission();
 
+        // get instance for firebase
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        client = CustomWebSocket.getInstance();
 
-        mClient = new OkHttpClient.Builder()
-                .readTimeout(600, TimeUnit.SECONDS)
-                .writeTimeout(600, TimeUnit.SECONDS)
-                .connectTimeout(600, TimeUnit.SECONDS)
-                .build();
 
+        // view related
         sizeButton = findViewById(R.id.size_buttons);
 
         colorButtons = new ArrayList<>();
@@ -99,6 +100,11 @@ public class PaintActivity extends AppCompatActivity {
         isColorOpen = true;
     }
 
+    /**
+     * change paint color
+     *
+     * @param view to click
+     */
     public void selectColors(View view) {
         DrawView drawView = findViewById(R.id.draw_view);
         if (view.getId() == R.id.blue_button) {
@@ -113,6 +119,11 @@ public class PaintActivity extends AppCompatActivity {
         showColors(view);
     }
 
+    /**
+     * show or hide color panel
+     *
+     * @param view to show or hide
+     */
     public void showColors(View view) {
         if (isColorOpen) {
             for (int i = 0; i < colorButtons.size(); i++) {
@@ -134,7 +145,11 @@ public class PaintActivity extends AppCompatActivity {
         isColorOpen = !isColorOpen;
     }
 
-
+    /**
+     * change paint size
+     *
+     * @param view size view
+     */
     public void selectSizes(View view) {
         DrawView drawView = findViewById(R.id.draw_view);
         if (view.getId() == R.id.s_button) {
@@ -151,6 +166,11 @@ public class PaintActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * show or hide size panel
+     *
+     * @param view to show or hide
+     */
     public void showSizes(View view) {
         if (isSizeOpen) {
             sizeButton.setVisibility(View.VISIBLE);
@@ -183,16 +203,31 @@ public class PaintActivity extends AppCompatActivity {
         isSizeOpen = !isSizeOpen;
     }
 
+    /**
+     * erase lines
+     *
+     * @param view the erase view
+     */
     public void erase(View view) {
         DrawView drawView = findViewById(R.id.draw_view);
         drawView.erase();
     }
 
+    /**
+     * undo a line
+     *
+     * @param view the undo view
+     */
     public void undo(View view) {
         DrawView drawView = findViewById(R.id.draw_view);
         drawView.undo();
     }
 
+    /**
+     * save image to media with new uuid
+     *
+     * @param view
+     */
     public void saveImage(View view) {
         DrawView drawView = findViewById(R.id.draw_view);
         drawView.setDrawingCacheEnabled(true);
@@ -202,10 +237,12 @@ public class PaintActivity extends AppCompatActivity {
                 drawView.createBitmap(),
                 uuid + ".png",
                 "myPainting");
+
         if (imageSaved != null) {
             Toast.makeText(getApplicationContext(), "ImageSaved", Toast.LENGTH_SHORT).show();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
+                // send image to ccyy.xyz
                 public void run() {
                     sendImage(uuid, imageSaved);
                 }
@@ -216,20 +253,28 @@ public class PaintActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * send image to ccyy.xyz
+     *
+     * @param uuid       the uuid of the image
+     * @param imageSaved the real image
+     */
     public void sendImage(String uuid, String imageSaved) {
 
         try {
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++");
-            System.out.println(uuid + ".png");
-            System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+            // debug prints
+//            System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+//            System.out.println(uuid + ".png");
+//            System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+//            System.out.println(imageSaved);
 
-            System.out.println(imageSaved);
-
+            // use https multipart to send png files
             new MultipartUploadRequest(this, uuid, "https://ccyy.xyz/api/v2/post/" + uuid)
+                    // get file from temp
                     .addFileToUpload(Environment.getExternalStorageDirectory() + "/temp.png", "file")
-//                    .setNotificationConfig(new UploadNotificationConfig())
+                    // POST to server
                     .setMethod("POST")
+                    // listen on progress
                     .setDelegate(new UploadStatusDelegate() {
                         @Override
                         public void onProgress(Context context, UploadInfo uploadInfo) {
@@ -239,7 +284,6 @@ public class PaintActivity extends AppCompatActivity {
                         @Override
                         public void onError(Context context, UploadInfo uploadInfo, Exception exception) {
                             Toast.makeText(context, "Transmission failed", Toast.LENGTH_SHORT).show();
-                            exception.printStackTrace();
                         }
 
                         @Override
@@ -247,8 +291,10 @@ public class PaintActivity extends AppCompatActivity {
                             Toast.makeText(context, "Transmission success", Toast.LENGTH_SHORT).show();
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
+                                // after image successfully send to ccyy.xyz using https
+                                // tell server to predict my paint and pair
                                 public void run() {
-                                    tellServer(uuid);
+                                    tellServer();
                                 }
                             }, 1000);
                         }
@@ -258,6 +304,7 @@ public class PaintActivity extends AppCompatActivity {
                             Toast.makeText(context, "Transmission cancel", Toast.LENGTH_SHORT).show();
                         }
                     })
+                    // start upload()
                     .startUpload();
 
         } catch (IOException e) {
@@ -265,8 +312,11 @@ public class PaintActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * request permission for read and store
+     */
     private void requestStoragePermission() {
+        // only require this after android M
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
@@ -283,6 +333,11 @@ public class PaintActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * debug print for child threads, need to print on ui threads
+     *
+     * @param message the message to print
+     */
     private void print(final String message) {
         runOnUiThread(new Runnable() {
             @Override
@@ -293,30 +348,32 @@ public class PaintActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Websocket listener
+     */
     private final class EchoWebSocketListener extends WebSocketListener {
         private static final int CLOSE_STATUS = 1000;
 
         @Override
         public void onOpen(WebSocket webSocket, Response response) {
+            // send email and uid and image uuid in json string to ccyy.xyz, to further predict and pair
             webSocket.send(String.format("{\"Proto\":1,\"Proto1\":5,\"PlayerName\":\"%s\",\"PlayerId\":\"%s\",\"Img\":\"%s\"}",
                     user.getEmail(),
                     user.getUid(),
                     uuid + ".png"));
-//            webSocket.send(ByteString.decodeHex("abcd"));
-//            webSocket.close(CLOSE_STATUS, "Socket Closed !!");
         }
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onMessage(WebSocket webSocket, String message) {
+            // if reply coming back from websocket, decode it and parse it
+            // extract user and userid for chat
             Base64.Decoder decoder = Base64.getMimeDecoder();
             try {
-//                print("Receive Message: " + message);
                 String jsonString = new String(decoder.decode(message), "UTF-8");
                 JSONObject json = new JSONObject(jsonString);
                 String playerName = json.getString("PlayerName");
                 String playerId = json.getString("PlayerId");
-//                print("Receive Message: " + playerName);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), ChatBoxActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -346,28 +403,31 @@ public class PaintActivity extends AppCompatActivity {
         }
     }
 
-    private void tellServer(String uuid) {
+    /**
+     * after sending image to server, tell server to predict and pair
+     */
+    private void tellServer() {
+        // build the request
+        // inject a fake header to pass ccyy.xyz server's nginx checking, otherwise receive 403 forbidden :(
+        // use wss (ws with ssl) for security!
         Request request = new Request.Builder().url("wss://ccyy.xyz/api/v3/")
                 .removeHeader("User-Agent")
-//                .addHeader("User-Agent", WebSettings.getDefaultUserAgent(getApplicationContext()))
-//                .addHeader("Accept-Encoding", "gzip, deflate")
-//                .addHeader("Accept-Language", "en-US,en;q=0.9")
                 .addHeader("Cache-Control", "no-cache")
                 .addHeader("Connection", "Upgrade")
                 .addHeader("Host", "ccyy.xyz")
                 .addHeader("Origin", "https://ccyy.xyz")
                 .addHeader("Pragma", "no-cache")
-//                .addHeader("Sec-WebSocket-Extensions", "permessage-deflate; client_max_window_bits")
-//                .addHeader("Sec-WebSocket-Key", "YOVtGgshqpKQuHJ+Q5ilaQ==")
-//                .addHeader("Sec-WebSocket-Version","13")
                 .addHeader("Upgrade", "websocket")
                 .addHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36")
                 .build();
 
+        // set up my websocket request listener
         EchoWebSocketListener listener = new EchoWebSocketListener();
-        WebSocket webSocket = mClient.newWebSocket(request, listener);
+        // init websocket
+        WebSocket webSocket = client.getClient().newWebSocket(request, listener);
 //        print("Headers: " + request.headers().toString());
-        mClient.dispatcher().executorService();//.shutdown();
+        // execute my request
+        client.getClient().dispatcher().executorService();//.shutdown();
     }
 
 //    @Override

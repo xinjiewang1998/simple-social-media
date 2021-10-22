@@ -5,9 +5,6 @@ import com.example.myapplication.search.StoreEngine;
 
 import java.util.List;
 
-/**
- *
- */
 public class Parser {
     // The tokenizer (class field) this parser will use.
     Tokenizer tokenizer;
@@ -17,7 +14,6 @@ public class Parser {
     /**
      * Parser class constructor
      * Simply sets the tokenizer field.
-     * **** please do not modify this part ****
      */
     public Parser(Tokenizer tokenizer, StoreEngine storeEngine) {
         this.tokenizer = tokenizer;
@@ -28,6 +24,9 @@ public class Parser {
         return this.parseExp().evaluate();
     }
 
+    /**
+     * for debug use
+     */
     public void printTokenizer() {
         while (tokenizer.hasNext()) {
             System.out.println("TYPE " + tokenizer.current().getType());

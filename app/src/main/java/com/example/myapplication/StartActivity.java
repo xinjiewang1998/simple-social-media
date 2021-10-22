@@ -37,13 +37,9 @@ public class StartActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-
         Button loginButton = findViewById(R.id.login_button);
-
         Button registerButton = findViewById(R.id.register_button);
-
         usernameTextField = findViewById(R.id.user_name);
-
         passwordTextField = findViewById(R.id.password);
 
 
@@ -93,16 +89,23 @@ public class StartActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * register user
+     * @param username the email
+     * @param password the password
+     */
     private void registerUser(String username, String password) {
         mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     FirebaseUser user = mAuth.getCurrentUser();
+                    // save to user db
                     reference = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
                     HashMap<String, Object> hashMap = new HashMap<>();
                     hashMap.put("email", username);
                     hashMap.put("id", user.getUid());
+                    // on complete make a toast
                     reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -116,6 +119,11 @@ public class StartActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * register user
+     * @param username the email
+     * @param password the password
+     */
     private void loginUser(String username, String password) {
         mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -126,7 +134,6 @@ public class StartActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                     Toast.makeText(StartActivity.this, "Login succeed", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });

@@ -20,7 +20,6 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.R;
-import com.example.myapplication.extractEngine;
 
 import java.util.HashMap;
 import java.util.List;
@@ -44,8 +43,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
 
         if (postList != null) {
             String textString = postList.get(getItemCount() - 1 - position).get("text").toString();
-            holder.getPostTag().setText(extractEngine.extractTag(textString).toString());
-            holder.getPosterName().setText(extractEngine.extractUserName(textString).toString());
+            holder.getPostTag().setText(ExtractEngine.extractTag(textString).toString());
+            holder.getPosterName().setText(ExtractEngine.extractUserName(textString).toString());
             holder.getLikeCount().setText(postList.get(getItemCount() - 1 - position).get("like_count").toString());
             holder.setImgUrl(postList.get(getItemCount() - 1 - position).get("img_url").toString());
             holder.setNetworkImageView();
@@ -59,7 +58,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                     intent.putExtra("LIKE_C", postList.get(getItemCount() - 1 - position).get("like_count").toString());
                     intent.putExtra("TEXT", postList.get(getItemCount() - 1 - position).get("text").toString());
                     intent.putExtra("POSITION", getItemCount() - 1 - position);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
             });

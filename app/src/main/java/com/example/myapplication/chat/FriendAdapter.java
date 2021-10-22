@@ -21,7 +21,8 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.friendHold
     public final Context ctx;
     // Store all users who have registered
     public final List<User> dataset;
-    public FriendAdapter(Context ctx, List<User> dataset){
+
+    public FriendAdapter(Context ctx, List<User> dataset) {
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -42,9 +43,9 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.friendHold
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(ctx, ChatBoxActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-                intent.putExtra("user",dataset.get(position).getEmail());
-                intent.putExtra("userId",dataset.get(position).getId());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("user", dataset.get(position).getEmail());
+                intent.putExtra("userId", dataset.get(position).getId());
                 ctx.startActivity(intent);
 
             }
