@@ -5,8 +5,10 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.PositionAssertions.isAbove;
 import static androidx.test.espresso.assertion.PositionAssertions.isCompletelyAbove;
 import static androidx.test.espresso.assertion.PositionAssertions.isCompletelyLeftOf;
+import static androidx.test.espresso.assertion.PositionAssertions.isCompletelyRightOf;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
@@ -16,33 +18,38 @@ import org.junit.Rule;
 import org.junit.Test;
 
 public class MessageTest {
+    // This test is for the activity_start.xml and StartActivity.java
     @Rule
-    public ActivityTestRule<MessageActivity> mActivityTestRule
-            = new ActivityTestRule<>(MessageActivity.class);
+    public ActivityTestRule<MessageActivity> activityRule =
+            new ActivityTestRule<>(MessageActivity.class);
 
+    // This method test whether items is display on screen.
     @Test
-    public void messageUITest() {
-        onView(withId(R.id.account_name)).check(isAbove(withId(R.id.reply)));
-//        onView(withId(R.id.account_name)).check(isPartiallyAbove(withId(R.id.reply)));
-        onView(withId(R.id.account_name)).check(isCompletelyAbove(withId(R.id.reply)));
-
-        onView(withId(R.id.account_name)).check(isAbove(withId(R.id.textView)));
-        onView(withId(R.id.account_name)).check(isAbove(withId(R.id.like)));
-
-//        onView(withId(R.id.reply)).check(isPartiallyLeftOf(withId(R.id.textView)));
-        onView(withId(R.id.reply)).check(isCompletelyLeftOf(withId(R.id.textView)));
-//        onView(withId(R.id.reply)).check(isPartiallyLeftOf(withId(R.id.like)));
-        onView(withId(R.id.reply)).check(isAbove(withId(R.id.like)));
-
-        onView(withId(R.id.like)).check(isCompletelyLeftOf(withId(R.id.textView2)));
-        onView(withId(R.id.like)).check(isCompletelyAbove(withId(R.id.list_friends)));
+    public void displayUITest() {
+        onView(withId(R.id.portrait)).check(matches(isDisplayed()));
+        onView(withId(R.id.user_name)).check(matches(isDisplayed()));
+        onView(withId(R.id.password)).check(matches(isDisplayed()));
+        onView(withId(R.id.login_button)).check(matches(isDisplayed()));
+        onView(withText(R.string.login)).check(matches(isDisplayed()));
+        onView(withId(R.id.register_button)).check(matches(isDisplayed()));
+        onView(withText(R.string.register)).check(matches(isDisplayed()));
     }
 
+    // This method test whether items is on correct position.
     @Test
-    public void messageActivityTest() {
-        onView(withId(R.id.textView2)).check(matches(withText("  Like")));
-        onView(withId(R.id.reply)).perform(click()).check(matches(isClickable()));
-        onView(withId(R.id.like)).perform(click()).check(matches(isClickable()));
-        onView(withId(R.id.account_name)).check(matches(withText("TextView")));
+    public void positionUITest() {
+        onView(withId(R.id.portrait)).check(isCompletelyAbove(withId(R.id.user_name)));
+        onView(withId(R.id.user_name)).check(isCompletelyAbove(withId(R.id.password)));
+        onView(withId(R.id.password)).check(isCompletelyAbove(withId(R.id.login_button)));
+        onView(withId(R.id.password)).check(isCompletelyAbove(withId(R.id.register_button)));
+        onView(withId(R.id.login_button)).check(isCompletelyLeftOf(withId(R.id.register_button)));
+        onView(withId(R.id.register_button)).check(isCompletelyRightOf(withId(R.id.login_button)));
+    }
+
+    // This method test whether button is click or not.
+    @Test
+    public void buttonTest() {
+        onView(withId(R.id.login_button)).perform(click()).check(matches(isClickable()));
+        onView(withId(R.id.register_button)).perform(click()).check(matches(isClickable()));
     }
 }
