@@ -62,22 +62,10 @@ The following is a report template to help your team successfully provide all th
 
 ## Application UML
 
-![ClassDiagramExample](/Group%20Assignment/images/ClassDiagramExample.png)
-*[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
-
-Chat.java
-ChatBox.java
-ExtractEngine.java
-FriendAdapter.java - FriendHolder.class
-MessageActivity.java
-MessageAdaptor.java - MessageHolder.class
-User.java
-
-AllPostPage.java - MyTask.class PostsConcreteCollection.class - PCIterator.class
-eachpost.java - LruImageCache.class
-PostAdaptor.java - LruImageCache.class (Least recently used) PostHolder.class
-Iterator.java
-IterableCollection.java
+![ClassDiagramExample](/Group%20Assignment/images/chatUml.jpeg)
+![ClassDiagramExample](/Group%20Assignment/images/paintUml.jpeg)
+![ClassDiagramExample](/Group%20Assignment/images/postUml.jpeg)
+![ClassDiagramExample](/Group%20Assignment/images/searchUml.jpeg)
 
 ## Application Design and Decisions
 
@@ -85,103 +73,60 @@ IterableCollection.java
 
 *I used the following data structures in my project:*
 
-1. *BTreeMap*
-   * *Objective: It is used for storing xxxx for xxx feature.*
-
-   * *Locations: line xxx in XXX.java, ..., etc.*
-
-   * *Reasons:*
-
-      * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
-
-      * *We don't need to access the item by index for this feature*
-2. *HashSet*
-   * *Objective: It is used for storing xxxx for xxx feature.*
-
-   * *Locations: line xxx in XXX.java, ..., etc.*
-
-   * *Reasons:*
-
-      * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
-
-      * *We don't need to access the item by index for this feature*
-3. *ArrayList*
-   * *Objective: It is used for storing xxxx for xxx feature.*
-
-   * *Locations: line xxx in XXX.java, ..., etc.*
-
-   * *Reasons:*
-
-      * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
-
-      * *We don't need to access the item by index for this feature*
-4. *Hashmap [string] object -/- firebase*
-   * *Objective: It is used for storing xxxx for xxx feature.*
-
-   * *Locations: line xxx in XXX.java, ..., etc.*
-
-   * *Reasons:*
-
-      * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
-
-      * *We don't need to access the item by index for this feature*
-
-   
 **Data Structures**
+1. *B+TreeMap*
+   * *Objective: It is used for indexing posts.*
 
-*[What data structures did your team utilise? Where and why?]*
+   * *Locations: BTree directory*
 
+   * *Reasons:*
+
+      * *a modified b+tree to support multi-values for the same key and range search*
+      * *search requires O(logn)*
+
+2. *HashSet*
+   * *Objective: It is used for removing duplicates.*
+
+   * *Locations: AndExp, NotExp, OrExp.*
+
+   * *Reasons:*
+
+      * *Fast removing duplicates based on hash*
+      * *simple ops to do union, intersect, not.*
+
+3. *Hashmap [string] object -/- firebase*
+   * *Objective: It is used in firebase and decoding json.*
+
+
+4. *ArrayList*
+   * *Many other places*
+    
 **Design Patterns**
 
 **Iterator**
+*Inside posts to iterate through things.*
 **Singleton**
-
-*[What design patterns did your team utilise? Where and why?]*
+*Inside paint to wrap a websocket, so it is not initialised everytime and save connections.*
 
 **Grammars**
 
 *Search Engine*
-<br> *Production Rules* <br>
-\<Non-Terminal> ::= \<some output>
-<br>
-\<Non-Terminal> ::= \<some output>
 
-
-*[How do you design the grammar? What are the advantages of your designs?]*
-
-*If there are several grammars, list them all under this section and what they relate to.*
+* <exp> ::= <term> | <term> AND <exp> | <term> OR <exp>
+  <br>
+* <term>   ::=  <factor> | NOT <factor>
+  <br>
+* <factor> ::= <user> | <tag> | ( expression )
 
 **Tokenizer and Parsers**
 
-*[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
+use tokenizer and parser to parse user search, hence we could build query on it, including and, or, union.
 
 **Surprise Item**
 
-//
-
-*[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
-
 **Other**
 
-//
-
-*[What other design decisions have you made which you feel are relevant? Feel free to separate these into their own subheadings.]*
-
 ## Summary of Known Errors and Bugs
-
-*[Where are the known errors and bugs? What consequences might they lead to?]*
-
-*Here is an example:*
-
-1. *Bug 1:*
-
-- *A space bar (' ') in the sign in email will crash the application.*
-- ...
-
-2. *Bug 2:*
-3. ...
-
-*List all the known errors and bugs here. If we find bugs/errors that your team do not know of, it shows that your testing is not through.*
 
 ## Testing Summary
 
