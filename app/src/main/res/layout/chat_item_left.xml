@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
-    android:padding="8dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="8dp">
     <!-- User image -->
     <ImageView
         android:id="@+id/profile_image"
@@ -19,7 +19,7 @@
         android:background="@drawable/chat_left"
         android:padding="5dp"
         android:text="hello"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
 
 </RelativeLayout>

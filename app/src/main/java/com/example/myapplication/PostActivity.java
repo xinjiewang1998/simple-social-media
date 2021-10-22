@@ -29,6 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -142,6 +144,7 @@ public class PostActivity extends AppCompatActivity {
         }
 
     }
+
     // a listener to listen users click button and go to another page.
     private View.OnClickListener AllPostListener = new View.OnClickListener() {
         @Override
@@ -167,6 +170,7 @@ public class PostActivity extends AppCompatActivity {
 
             /**
              * determine whether has next post
+             *
              * @return True if has next post
              */
             @Override
@@ -179,6 +183,7 @@ public class PostActivity extends AppCompatActivity {
 
             /**
              * if has next post,get it
+             *
              * @return next post if has next, otherwise null
              */
             @Override
@@ -266,8 +271,28 @@ public class PostActivity extends AppCompatActivity {
                 System.err.println("Failed to retrieve data, error: " + error.toException());
             }
         });
-
     }
-
-
+//    private void searchExample() {
+//        try {
+//            InputStream is = getAssets().open("allpostdata.json");
+//            int size = is.available();
+//            byte[] buffer = new byte[size];
+//            is.read(buffer);
+//            is.close();
+//            String json = new String(buffer, "UTF-8");
+//            QueryEngine queryEngine = new QueryEngine(json);
+//            System.out.println("==============================================================");
+//            List<String> outputs = queryEngine.queryText("#APeoplesJourney");
+////            outputs = queryEngine.queryText("#NoTag");
+////            outputs = queryEngine.queryText("#NoTag & @acommonname");
+////            outputs = queryEngine.queryText("#NoTag | @acommonname");
+////            outputs = queryEngine.queryText("!#NoTag");
+//            outputs = queryEngine.queryText("#APeoplesJourney | (#NoTag & !@acommonname)");
+////            outputs = queryEngine.queryText("(#NoTag & !@acommonname) | #APeoplesJourney");
+//            System.out.println(outputs.size());
+//            System.out.println("==============================================================");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

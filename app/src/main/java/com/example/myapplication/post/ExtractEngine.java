@@ -30,7 +30,7 @@ public class ExtractEngine {
             }
         }
         if (tags.size() == 0) {
-            tags.add("NoTag");
+            tags.add("#NoTag");
         }
         return tags;
     }
@@ -56,7 +56,7 @@ public class ExtractEngine {
             }
         }
         if (userNames.size() == 0) {
-            userNames.add("Unknown user");
+            userNames.add("@Unknown user");
         }
         return userNames;
     }

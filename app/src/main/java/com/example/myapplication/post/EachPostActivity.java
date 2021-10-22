@@ -110,6 +110,7 @@ public class EachPostActivity extends AppCompatActivity {
         }
 
     }
+
     //Listener to listen user click Favourite button
     private View.OnClickListener FavoriteListener = new View.OnClickListener() {
         @Override

@@ -11,36 +11,33 @@
         android:id="@+id/P"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
         android:text="@string/P"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/eachPostImage"
 
         android:layout_width="175dp"
         android:layout_height="160dp"
-        app:layout_constraintBottom_toTopOf="@+id/posttext"
-        app:layout_constraintEnd_toStartOf="@+id/Favorite"
-        app:layout_constraintHorizontal_bias="0.746"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/P"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintTop_toBottomOf="@+id/P" />
 
     <Button
         android:id="@+id/Like"
         android:layout_width="107dp"
         android:layout_height="48dp"
-        android:text="@string/good"
         android:backgroundTint="@color/white"
+        android:text="@string/good"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
@@ -52,22 +49,19 @@
         android:id="@+id/posttext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/Like"
+        app:layout_constraintBottom_toTopOf="@+id/LikeCount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/P"
-        app:layout_constraintVertical_bias="0.443" />
+        app:layout_constraintTop_toBottomOf="@+id/eachPostImage" />
 
     <TextView
         android:id="@+id/LikeCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.009"
-        app:layout_constraintStart_toEndOf="@+id/Like"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/Like"
         app:layout_constraintVertical_bias="0.2" />
 

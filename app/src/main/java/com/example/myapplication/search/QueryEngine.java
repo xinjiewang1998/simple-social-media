@@ -15,6 +15,10 @@ public class QueryEngine {
         this.storeEngine = new StoreEngine(postObjList);
     }
 
+    public QueryEngine(String jsonStr) {
+        this.storeEngine = new StoreEngine(jsonStr);
+    }
+
     /**
      * given query, return matched post obj
      *

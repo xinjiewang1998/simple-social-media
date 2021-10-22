@@ -119,9 +119,11 @@ public class ChatBoxActivity extends AppCompatActivity {
                 listChat.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Chat chat = dataSnapshot.getValue(Chat.class);
-                    if (chat.getReceiver().equals(myID) && chat.getSender().equals(userID) ||
-                            chat.getReceiver().equals(userID) && chat.getSender().equals(myID)) {
-                        listChat.add(chat);
+                    if(chat.getReceiver()!= null && chat.getSender() != null) {
+                        if (chat.getReceiver().equals(myID) && chat.getSender().equals(userID) ||
+                                chat.getReceiver().equals(userID) && chat.getSender().equals(myID)) {
+                            listChat.add(chat);
+                        }
                     }
                     messageAdapter = new MessageAdapter(ChatBoxActivity.this, listChat);
                     recyclerView.setAdapter(messageAdapter);
