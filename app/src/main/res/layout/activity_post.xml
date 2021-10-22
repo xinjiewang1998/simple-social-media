@@ -9,24 +9,22 @@
     <SearchView
         android:id="@+id/SearchPost"
         android:layout_width="0dp"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/frame"
         android:iconifiedByDefault="true"
-        app:layout_constraintBottom_toTopOf="@+id/AllPostView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.153" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/FavoritePost"
         android:layout_width="162dp"
         android:layout_height="52dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/white"
         android:text="@string/FavoritePost"
         android:textColor="@color/black"
@@ -37,13 +35,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/AllPostView"
-        android:layout_width="404dp"
-        android:layout_height="565dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FavoritePost" />
 
