@@ -43,8 +43,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
 
     /**
      * show corresponding post information
-     * @param holder     a holder used to bind information show on the view.
-     * @param position   post position
+     *
+     * @param holder   a holder used to bind information show on the view.
+     * @param position post position
      */
     @SuppressLint("SetTextI18n")
     public void onBindViewHolder(@NonNull PostAdapter.PostHolder holder, @SuppressLint("RecyclerView") int position) {

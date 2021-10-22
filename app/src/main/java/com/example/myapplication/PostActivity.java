@@ -144,6 +144,7 @@ public class PostActivity extends AppCompatActivity {
         }
 
     }
+
     // a listener to listen users click button and go to another page.
     private View.OnClickListener AllPostListener = new View.OnClickListener() {
         @Override
@@ -169,6 +170,7 @@ public class PostActivity extends AppCompatActivity {
 
             /**
              * determine whether has next post
+             *
              * @return True if has next post
              */
             @Override
@@ -181,6 +183,7 @@ public class PostActivity extends AppCompatActivity {
 
             /**
              * if has next post,get it
+             *
              * @return next post if has next, otherwise null
              */
             @Override
