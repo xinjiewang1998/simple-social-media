@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 
 public class EachPostActivity extends AppCompatActivity {
+    //Field
     private Integer Position;
     private String LIKE_C;
     private TextView textView_like;
@@ -42,6 +43,7 @@ public class EachPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_each_post);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        //initialize fields
         ClickCount = 1;
         Intent intent = getIntent();
         LIKE_C = intent.getStringExtra("LIKE_C");
@@ -53,6 +55,7 @@ public class EachPostActivity extends AppCompatActivity {
         textView_like.setText(LIKE_C);
         textView_text.setText(TEXT);
         NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.eachPostImage);
+        //get post image url, load and show
         RequestQueue mQueue;
         mQueue = Volley.newRequestQueue(EachPostActivity.this);
 
@@ -66,6 +69,9 @@ public class EachPostActivity extends AppCompatActivity {
         FavoriteButton.setOnClickListener(FavoriteListener);
     }
 
+    /**
+     * used to put the given img url in cache and load.
+     */
     public static class LruImageCache implements ImageLoader.ImageCache {
 
         private static LruCache<String, Bitmap> mMemoryCache;
@@ -104,7 +110,7 @@ public class EachPostActivity extends AppCompatActivity {
         }
 
     }
-
+    //Listener to listen user click Favourite button
     private View.OnClickListener FavoriteListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -114,8 +120,9 @@ public class EachPostActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot dss : snapshot.getChildren()) {
+                        //check if a user add same post again.
                         if (TEXT.equals(dss.child("text").getValue(String.class)) && firebaseUser.getEmail().equals(dss.child("User").getValue(String.class))) {
-                            flag = true;     // not to add duplicate post for the same user.
+                            flag = true;
                             break;
                         }
                     }
@@ -140,6 +147,7 @@ public class EachPostActivity extends AppCompatActivity {
             }
         }
     };
+    //Listener to listen user click Like button
     private View.OnClickListener LikeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

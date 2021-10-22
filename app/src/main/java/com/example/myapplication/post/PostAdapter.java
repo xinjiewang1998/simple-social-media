@@ -24,6 +24,9 @@ import com.example.myapplication.R;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * used to show all information(image,text,like count,name.tag) of posts.
+ */
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     private final Context context;
     private final List<HashMap<String, Object>> postList;
@@ -38,6 +41,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         return new PostHolder(LayoutInflater.from(context).inflate(R.layout.activity_postlist_holder, parent, false));
     }
 
+    /**
+     * show corresponding post information
+     * @param holder     a holder used to bind information show on the view.
+     * @param position   post position
+     */
     @SuppressLint("SetTextI18n")
     public void onBindViewHolder(@NonNull PostAdapter.PostHolder holder, @SuppressLint("RecyclerView") int position) {
 

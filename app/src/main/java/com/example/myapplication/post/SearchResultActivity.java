@@ -30,6 +30,9 @@ public class SearchResultActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    /**
+     * receive post information from PostActivity.class and show search result on the view.
+     */
     private void viewSearchResult() {
         Intent intent = getIntent();
         ArrayList<String> TextList = intent.getStringArrayListExtra("TEXTLIST");
