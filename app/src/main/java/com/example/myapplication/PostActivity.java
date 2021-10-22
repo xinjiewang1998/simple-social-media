@@ -39,7 +39,7 @@ import java.util.TimerTask;
 
 
 public class PostActivity extends AppCompatActivity {
-
+    //Field
     private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private ArrayList<HashMap<String, Object>> allPostItems;
@@ -58,7 +58,7 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
         mAuth = FirebaseAuth.getInstance();
-
+        //initialize all fields
         recyclerView = (RecyclerView) findViewById(R.id.AllPostView);
         allPostItems = new ArrayList<>();
         BufferPostList = new ArrayList<>();
@@ -67,22 +67,25 @@ public class PostActivity extends AppCompatActivity {
         postPosition = new ArrayList<>();
         outputs = new ArrayList<>();
         imgUrlList = new ArrayList<>();
-        readJson();
+        readPost();
         SearchView PostSearchView = (SearchView) findViewById(R.id.SearchPost);
+        //configure searchView
         PostSearchView.setIconifiedByDefault(true);
         PostSearchView.setSubmitButtonEnabled(true);
-        //PostSearchView.onActionViewExpanded();
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = (Button) findViewById(R.id.FavoritePost);
         button.setOnClickListener(AllPostListener);
+        // a listener to listen typing text in searchView
         PostSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if (!TextUtils.isEmpty(query)) {
+                    //get keyword put in the searchView and parse.
                     QueryEngine queryEngine = new QueryEngine(postObjList);
                     outputs = queryEngine.queryText(query);
+                    //put search result in an arraylist.
                     if (outputs != null && outputs.size() != 0) {
                         findPostPosition();
                         for (int i = 0; i < outputs.size(); i++) {
@@ -93,6 +96,7 @@ public class PostActivity extends AppCompatActivity {
                             SearchResultList.add(SingleResult);
                         }
                     }
+                    //transform search result to SearchResultActivity.class
                     Intent intent = new Intent(getApplicationContext(), SearchResultActivity.class);
                     ArrayList<String> TextList = new ArrayList<>();
                     ArrayList<Integer> LikeCountList = new ArrayList<>();
@@ -122,6 +126,10 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
+
+    /**
+     * find out all positions and corresponding urls of posts in outputs
+     */
     private void findPostPosition() {
 
         for (int i = 0; i < outputs.size(); i++) {
@@ -136,7 +144,7 @@ public class PostActivity extends AppCompatActivity {
         }
 
     }
-
+    // a listener to listen users click button and go to another page.
     private View.OnClickListener AllPostListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -145,6 +153,9 @@ public class PostActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Iterator pattern, used for showing post as a stream
+     */
     public class PostsConcreteCollection implements IterableCollection {
         private ArrayList<HashMap<String, Object>> AllPostCollection = allPostItems;
 
@@ -156,6 +167,10 @@ public class PostActivity extends AppCompatActivity {
         private class PostsConcreteIterator implements Iterator {
             int index = 0;
 
+            /**
+             * determine whether has next post
+             * @return True if has next post
+             */
             @Override
             public boolean hasNext() {
                 if (AllPostCollection != null && index < AllPostCollection.size()) {
@@ -164,6 +179,10 @@ public class PostActivity extends AppCompatActivity {
                 return false;
             }
 
+            /**
+             * if has next post,get it
+             * @return next post if has next, otherwise null
+             */
             @Override
             public Object next() {
                 if (this.hasNext()) {
@@ -174,6 +193,9 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * used to give a time gap for showing new posts and show posts as a stream
+     */
     private class MyTask extends TimerTask {
         private Activity context;
 
@@ -188,7 +210,9 @@ public class PostActivity extends AppCompatActivity {
     }
 
     Runnable updateThread = new Runnable() {
-
+        /**
+         * if has next post, add it and show, otherwise not update
+         */
         @Override
         public void run() {
             if (PostIterator.hasNext()) {
@@ -202,7 +226,10 @@ public class PostActivity extends AppCompatActivity {
 
     };
 
-    private void readJson() {
+    /**
+     * read post from firebase and show the first one at first.
+     */
+    private void readPost() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference("allpost");
         myRef.addValueEventListener(new ValueEventListener() {

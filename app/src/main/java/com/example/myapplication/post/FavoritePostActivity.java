@@ -26,6 +26,7 @@ import java.util.HashMap;
 
 
 public class FavoritePostActivity extends AppCompatActivity {
+    //Field
     private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private ArrayList<HashMap<String, Object>> FavoritePostList;
@@ -37,6 +38,7 @@ public class FavoritePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_post);
         mAuth = FirebaseAuth.getInstance();
+        //initialize fields
         recyclerView = (RecyclerView) findViewById(R.id.FavoritePostList);
         AllPostList = new ArrayList<>();
         FavoritePostList = new ArrayList<>();
@@ -55,6 +57,7 @@ public class FavoritePostActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // find all favourite posts of login user and show
                 for (DataSnapshot dss : snapshot.getChildren()) {
                     if (firebaseUser.getEmail().equals(dss.child("User").getValue(String.class))) {
                         //Integer p=dss.child("Position").getValue(Integer.class);
