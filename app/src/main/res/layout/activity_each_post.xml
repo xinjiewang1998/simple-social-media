@@ -5,7 +5,7 @@
     android:id="@+id/post1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".post.eachpost">
+    tools:context=".post.EachPostActivity">
 
     <TextView
         android:id="@+id/P"

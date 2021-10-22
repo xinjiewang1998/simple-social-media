@@ -54,7 +54,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent();
-                    intent.setClass(context, eachpost.class);
+                    intent.setClass(context, EachPostActivity.class);
                     intent.putExtra("IMG_URL", postList.get(getItemCount() - 1 - position).get("img_url").toString());
                     intent.putExtra("LIKE_C", postList.get(getItemCount() - 1 - position).get("like_count").toString());
                     intent.putExtra("TEXT", postList.get(getItemCount() - 1 - position).get("text").toString());

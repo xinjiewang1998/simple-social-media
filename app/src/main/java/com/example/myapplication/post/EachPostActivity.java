@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class eachpost extends AppCompatActivity {
+public class EachPostActivity extends AppCompatActivity {
     private Integer Position;
     private String LIKE_C;
     private TextView textView_like;
@@ -39,7 +39,7 @@ public class eachpost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_eachpost);
+        setContentView(R.layout.activity_each_post);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         ClickCount=1;
         Intent intent=getIntent();
@@ -53,7 +53,7 @@ public class eachpost extends AppCompatActivity {
         textView_text.setText(TEXT);
         NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.eachPostImage);
         RequestQueue mQueue;
-        mQueue = Volley.newRequestQueue(eachpost.this);
+        mQueue = Volley.newRequestQueue(EachPostActivity.this);
 
         LruImageCache lruImageCache = LruImageCache.instance();
 

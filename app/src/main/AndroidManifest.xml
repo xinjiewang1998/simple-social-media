@@ -21,10 +21,7 @@
             android:name=".post.FavoritePostActivity"
             android:exported="true" />
         <activity
-            android:name=".post.eachpost"
-            android:exported="true" />
-        <activity
-            android:name=".post.allpost"
+            android:name=".post.EachPostActivity"
             android:exported="true" />
         <activity
             android:name=".chat.ChatBox"
@@ -38,9 +35,6 @@
             android:exported="true" />
         <activity
             android:name=".PostActivity"
-            android:exported="true" />
-        <activity
-            android:name=".post.AllPostPage"
             android:exported="true" />
         <activity
             android:name=".StartActivity"
