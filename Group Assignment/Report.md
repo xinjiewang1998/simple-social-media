@@ -79,43 +79,62 @@ PostAdaptor.java - LruImageCache.class (Least recently used) PostHolder.class
 Iterator.java
 IterableCollection.java
 
-
 ## Application Design and Decisions
 
 *Please give clear and concise descriptions for each subsections of this part. It would be better to list all the concrete items for each subsection and give no more than `5` concise, crucial reasons of your design. Here is an example for the subsection `Data Structures`:*
 
 *I used the following data structures in my project:*
 
-1. BTreeMap
-2. HashSet
-3. ArrayList
-4. Hashmap [string] object -/- firebase
-5.
+1. *BTreeMap*
+   * *Objective: It is used for storing xxxx for xxx feature.*
 
-1. *LinkedList*
+   * *Locations: line xxx in XXX.java, ..., etc.*
 
-    * *Objective: It is used for storing xxxx for xxx feature.*
+   * *Reasons:*
 
-    * *Locations: line xxx in XXX.java, ..., etc.*
+      * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
 
-    * *Reasons:*
+      * *We don't need to access the item by index for this feature*
+2. *HashSet*
+   * *Objective: It is used for storing xxxx for xxx feature.*
 
-        * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
+   * *Locations: line xxx in XXX.java, ..., etc.*
 
-        * *We don't need to access the item by index for this feature*
+   * *Reasons:*
 
-2. ...
+      * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
 
-3. ...
+      * *We don't need to access the item by index for this feature*
+3. *ArrayList*
+   * *Objective: It is used for storing xxxx for xxx feature.*
 
+   * *Locations: line xxx in XXX.java, ..., etc.*
+
+   * *Reasons:*
+
+      * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
+
+      * *We don't need to access the item by index for this feature*
+4. *Hashmap [string] object -/- firebase*
+   * *Objective: It is used for storing xxxx for xxx feature.*
+
+   * *Locations: line xxx in XXX.java, ..., etc.*
+
+   * *Reasons:*
+
+      * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
+
+      * *We don't need to access the item by index for this feature*
+
+   
 **Data Structures**
 
 *[What data structures did your team utilise? Where and why?]*
 
 **Design Patterns**
 
-Iterator
-Template
+**Iterator**
+**Singleton**
 
 *[What design patterns did your team utilise? Where and why?]*
 
@@ -136,7 +155,7 @@ Template
 
 *[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
 
-**Surpise Item**
+**Surprise Item**
 
 //
 
@@ -153,23 +172,6 @@ Template
 *[Where are the known errors and bugs? What consequences might they lead to?]*
 
 *Here is an example:*
-
-
-username too long
-chat touxiang
-profile anniu
-baise liaotiankuang huanyanse
-sousuo kuang zai dingshang
-unlike的e呢？
-文字排版
-toast 两次
-弹一会就没了
-post排版
-删除老页面
-#NoTag (显示问题)
-
-
-
 
 1. *Bug 1:*
 
