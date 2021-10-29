@@ -59,7 +59,7 @@ public class PaintTest {
         onView(withId(R.id.pink_button)).check(isCompletelyAbove(withId(R.id.orange_button)));
         onView(withId(R.id.orange_button)).check(isCompletelyAbove(withId(R.id.green_button)));
         onView(withId(R.id.green_button)).check(isCompletelyAbove(withId(R.id.blue_button)));
-        onView(withId(R.id.blue_button)).check(isPartiallyAbove(withId(R.id.color_button)));
+        onView(withId(R.id.blue_button)).check(isCompletelyAbove(withId(R.id.color_button)));
     }
 
     // Check the button is clickable.

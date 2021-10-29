@@ -55,7 +55,7 @@ public class ChatBoxActivity extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("user").child(firebaseUser.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("User").child(firebaseUser.getUid());
         intent = getIntent();
         String nameId = intent.getStringExtra("userId");
         String name = intent.getStringExtra("user");

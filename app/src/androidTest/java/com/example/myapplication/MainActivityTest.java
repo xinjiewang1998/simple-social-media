@@ -99,10 +99,10 @@ public class MainActivityTest {
     // This method test whether button is click or not.
     @Test
     public void buttonTest() {
-        onView(withId(R.id.message_Button)).perform(click()).check(matches(isClickable()));
-        onView(withId(R.id.my_post_button)).perform(click()).check(matches(isClickable()));
-        onView(withId(R.id.paint)).perform(click()).check(matches(isClickable()));
-        onView(withId(R.id.logout)).perform(click()).check(matches(isClickable()));
+        onView(withId(R.id.message)).check(matches(isClickable()));
+        onView(withId(R.id.my_post)).check(matches(isClickable()));
+        onView(withId(R.id.paint_button)).check(matches(isClickable()));
+        onView(withId(R.id.logout_button)).check(matches(isClickable()));
     }
 
     //This method test the intent from MainActivity to AllPostPage.Activity.

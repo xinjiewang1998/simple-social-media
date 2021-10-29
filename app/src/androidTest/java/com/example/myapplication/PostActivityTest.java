@@ -46,7 +46,7 @@ public class PostActivityTest {
     public void positionUITest() {
         onView(withId(R.id.SearchPost)).check(isCompletelyAbove(withId(R.id.FavoritePost)));
         onView(withText(R.string.FavoritePost)).check(isCompletelyBelow(withId(R.id.SearchPost)));
-        onView(withId(R.id.FavoritePost)).check(isPartiallyAbove(withId(R.id.AllPostView)));
+        onView(withId(R.id.FavoritePost)).check(isCompletelyAbove(withId(R.id.AllPostView)));
     }
 
     // Check the button "FavoritePost" is clickable.

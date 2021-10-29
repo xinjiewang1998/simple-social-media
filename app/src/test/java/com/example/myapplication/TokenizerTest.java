@@ -7,6 +7,7 @@ import com.example.myapplication.search.QParser.Token;
 import com.example.myapplication.search.QParser.Tokenizer;
 
 import org.junit.Test;
+import org.junit.runners.Parameterized;
 
 public class TokenizerTest {
 
