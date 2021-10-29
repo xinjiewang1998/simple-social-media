@@ -112,11 +112,11 @@ The following is a report template to help your team successfully provide all th
 
 *Search Engine*
 
-* <exp> ::= <term> | <term> AND <exp> | <term> OR <exp>
+* \<exp\> ::= \<term\> | \<term\> AND \<exp\> | \<term\> OR \<exp\>
   <br>
-* <term>   ::=  <factor> | NOT <factor>
+* \<term\>   ::=  \<factor\> | NOT \<factor\>
   <br>
-* <factor> ::= <user> | <tag> | ( expression )
+* \<factor\> ::= \<user\> | \<tag\> | ( expression )
 
 **Tokenizer and Parsers**
 
